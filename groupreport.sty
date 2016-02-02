@@ -1,0 +1,31 @@
+\ProvidesPackage{groupreport}
+
+\usepackage[toc]{glossaries}
+	\usepackage{glossary-mcols}
+	% \setglossarystyle{mcolindex}
+	\setglossarystyle{altlist}
+	\setacronymstyle{long-short-desc}
+	\makenoidxglossaries
+	\loadglsentries{glossary}
+
+%Change chapter heading
+\makeatletter
+\renewcommand{\@chapapp}{Section}
+\makeatother
+
+%Format margins
+\setlength{\voffset}{-.5cm}
+\addtolength{\textheight}{1cm}
+\addtolength{\hoffset}{-.8cm}
+\addtolength{\textwidth}{1.6cm}
+
+% \addtolength{\intextsep}{8pt} %spacing between wrapfigures and above/below text
+\addtolength{\columnsep}{15pt} %spacing between wrapfigures and adjacent text
+%\setlength{\jot}{8pt}
+
+%Set header & footer
+\fancyhead{}
+\fancyhead[LE]{\projectTitle}
+\fancyfoot[LE]{\thedate}
+\fancyfoot[RO]{\teamname}
+% \fancyfoot[R]{\writers{\thewriter}}

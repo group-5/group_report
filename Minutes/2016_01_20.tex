@@ -1,0 +1,93 @@
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\newcommand{\meetingType}{general}
+\usepackage{groupmeetings}
+
+\begin{document}
+
+\setdate{2016--01--20}
+\setpresent{
+    \chair{A.~Goodsell},
+    \boardmember{M.~Fry},
+    L.~Foglianti Spadini,
+    A.~Hyslop,
+    A.~Kallaivannan,
+    R.~Kent,
+    C.~Lau,
+    A.~Rutley,
+    S.~Searles-Bryant,
+    S.~Wright,
+    L.~Yeo
+}
+%\absent{B.~Gone \textit{(sabbatical)}}
+%\alsopresent{\boardmember{P.~Bartlett}}
+
+\maketitle
+
+\section{Announcements}
+\begin{items}
+    \item We do not have access to our space in Lab 3 on Tuesdays unless we make special arrangements. We also only have half a bench.
+\end{items}
+
+\section{Old business}
+\begin{items}
+    \item \priormins
+\end{items}
+
+
+\section{Design specification}
+\begin{items}
+    \item \textsc{Decision}: The robot will use GPS for guidance.
+    \item \textsc{Decision}: The robot will be controlled with an Arduino.
+    \item Design specification researched:
+    \begin{subitems}
+        \item \writers{AH, SW, LY} Health and safety re: children around electronics;
+        \item \writers{AG, AR} Nearby beaches;
+        \item \writers{RK, LFS, CL} Health and safety re: electronics \& water.
+        \item \writers{SSB} Precision of GPS
+    \end{subitems}
+    \item Design specification started
+\subsection{Division of team}
+    \item Three teams:
+    \begin{subitems}
+        \item Electronics: SSB, SW, AH
+        \item Hardware: CL, RK, AR, AK
+        \item Software: LY, LFS, AG
+    \end{subitems}
+\subsection{Tasks}
+    \item Hardware
+    \begin{subitems}
+        \item Design chassis;
+        \item choose construction materials;
+        \item design drawing tool;
+        \item choose method of prototyping.
+    \end{subitems}
+    \item Software:
+    \begin{subitems}
+        \item Familiarize with Arduino language and environment;
+        \item purchase development board.
+    \end{subitems}
+    \item Electronics:
+    \begin{subitems}
+        \item Investigate actuators and motors;
+        \item compile list of components;
+        \item purchase necessary electronics and acquire other components;
+        \item decide on interface with software.
+    \end{subitems}
+\end{items}
+
+\vspace{1em}
+\nextmeeting{Board meeting on Tuesday, January 26, at 11:15 in MPEB 3.14a. General meeting on Wednesday, January 27 at 13:00.}
+\vspace{1em}
+
+\section{Actions}
+\begin{items}
+    \action{Confirm precision of civilian GPS measurements.}{SSB}
+    \action{Design the robot}{Hardware subgroup}
+    \action{Design electronics system}{Electronics subgroup}
+    \action{Acquire components}{Electronics subgroup}
+    \action{Purchase Arduino and play with it}{Software subgroup}
+\end{items}
+
+\end{document}

@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+Database file #1: ../library.bib
+Warning--empty year in andresamador
+Warning--empty publisher in harrison2010
+Warning--empty year in MSUsojourner
+Warning--empty year in Ormston
+Warning--empty year in NASAcuriosity
+Warning--empty year in beachbot
+Warning--empty year in scratch
+Warning--empty year in zerorobotics
+Warning--empty year in wedo2
+Warning--empty year in valiantroamer
+Warning--empty year in ultrasoundrobots
+Warning--empty year in gpsbasics
+Warning--empty year in Qian
+Warning--empty year in Qian
+Warning--empty year in sandusa
+You've used 18 entries,
+            2481 wiz_defined-function locations,
+            644 strings with 6876 characters,
+and the built_in function-call counts, 4643 in all, are:
+= -- 394
+> -- 103
+< -- 8
++ -- 66
+- -- 30
+* -- 275
+:= -- 610
+add.period$ -- 49
+call.type$ -- 18
+change.case$ -- 35
+chr.to.int$ -- 18
+cite$ -- 42
+duplicate$ -- 267
+empty$ -- 570
+format.name$ -- 41
+if$ -- 1044
+int.to.chr$ -- 1
+int.to.str$ -- 19
+missing$ -- 4
+newline$ -- 93
+num.names$ -- 27
+pop$ -- 215
+preamble$ -- 1
+purify$ -- 18
+quote$ -- 0
+skip$ -- 222
+stack$ -- 0
+substring$ -- 76
+swap$ -- 37
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 123
+warning$ -- 15
+while$ -- 21
+width$ -- 0
+write$ -- 201
+(There were 15 warnings)

@@ -1,0 +1,102 @@
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\newcommand{\meetingType}{board}
+\usepackage{groupmeetings}
+
+\begin{document}
+
+\setdate{2016--01--26}
+\setpresent{
+    \chair{A.~Goodsell},
+    \boardmember{M.~Fry},
+    L.~Foglianti Spadini,
+    A.~Hyslop,
+    A.~Kallaivannan,
+    R.~Kent,
+    C.~Lau,
+    A.~Rutley,
+    S.~Searles-Bryant,
+    S.~Wright,
+    L.~Yeo
+}
+%\absent{B.~Gone \textit{(sabbatical)}}
+%\alsopresent{\boardmember{P.~Bartlett}}
+
+\maketitle
+
+
+\section{Old business}
+\begin{items}
+    \item \priormins
+    \item The report is now available to view in Dropbox at \url{https://goo.gl/1CujQq} or to view and edit in Overleaf at \url{www.overleaf.com/4075528rppsqb}. These will be updated and kept synced with SSB's local copy roughly daily.
+    \item Peer assessment form has been filled out for this week
+\end{items}
+
+
+\section{Announcements \& progress}
+\begin{items}
+    \item We do not have access to our space in Lab 3 on Tuesdays unless we make special arrangements. We also only have half a bench.
+    \item Servos: We have 7 in the lab, MF may have more. Plan is to use 3 for the rakes.
+    \item Motors: 148:1 gear ratio. We have 4 in the lab from the stair-climbing project.
+    \item The code for the Physics study room (top floor of Physics Bldg) is 0921.
+\subsection{Electronics platform (SSB, SW, AH)}
+    \item The electronics platform outline. Discussion of exact requirements.
+\begin{hiddenitems}
+    \item We believe that we need the following for the project (from Adafruit in the US):
+    \begin{itemize}
+        \item Arduino board: Arduino Uno (\${24.95})\\ \url{https://www.adafruit.com/products/50}
+        \item Motor control shield (\${19.95})\\ \url{https://www.adafruit.com/products/1438}
+        \item GPS shield (\${49.95})\\ \url{https://www.adafruit.com/products/1272}
+        \item Servo control shield (\${17.50})\\ \url{https://www.adafruit.com/products/1411}
+        \item Compass breakout board (\${19.95})\\ \url{https://www.adafruit.com/products/1746}
+    \end{itemize}
+    \item The GPS could be a breakout (\url{https://www.adafruit.com/products/746}) instead of a shield at a saving of \${15}.
+    \item The servo control board is unnecessary if only 2 servos are used since the motor shield board can handle these.
+    \item The motors and servos should be powered separately from the control board. 2 PP3 (9V) batteries should be sufficient.
+    \item The total cost for all of the components is a little over \${128}, or \pounds{90}, plus shipping.
+    \item We would also need a few other components (bypass capacitors; cables; battery connectors) which could be sourced in the UK (\eg Maplin).
+    \item The Arduino (Genuino) 101 has built in accelerometer. This would be very useful for navigation and making the positioning more precise.
+    \decisions Procure Genuino 101 from Arduino in Italy. All shields and the compass breakout from Adafruit. RK will order through Lab 3. SSB will forward details to RK and CL.
+\end{hiddenitems}
+
+
+
+\subsection{Robot design (AR, RK)}
+    \item CAD design made.
+    \item Use acrylic to manufacture (easy to work with; won't rust)
+    \item Could have an acrylic box over top for protection
+    \item Dimensions TBC
+    \item Discussion of whether two driven wheels should be at the front or the back
+    \item AG has a friend who will design a pretty box for us to be 3d-rpinted.
+    \item Suggestion from MF: consider using only 1 rake up/down to keep simple
+    \item Consider how much we can achieve this year; don't be over ambitious and perhaps leave some development for a further project.
+    \item We could recycle wheels from previous project (cable spools).
+    \item Safety regulations are extensive.
+
+\subsection{Software (AG, LFS, LY)}
+    \item Started looking at Arduino boards but handed that off to electronics subgroup because it made more sense for them to do it.
+    \item LY has investigated generating images (fractal-type diagrams) without using GPS. It is feasible to draw images without a positioning system even with possible turning and moving errors accounted for (computer simulations). This would be a good avenue to pursue if GPS and current plans fail. (MF: minimum goal should be to have a spiral-drawing robot tethered to a centre-point.)
+    \item LY has found a website for simulating Arduino output for some code (\url{https://123d.circuits.io/}). We can also connect simulated circuits, readings \emph{etc.} for simulation of the whole system. We should start a project on this website to simulate our code.
+\end{items}
+
+
+\section{New Business}
+\begin{items}
+\item Jobs to be assigned in group general meeting tomorrow.
+\end{items}
+
+\vspace{1em}
+\nextmeeting{Tuesday, February 2, at 11:15 in MPEB 3.14a}
+\vspace{1em}
+
+\section{Actions}
+\begin{items}
+    \action{Written work to be sent to SSB for compilation}{all}
+    \action{Aims and Motivations sections to be written up}{AG}
+    \action{Investigate procurements options for shields}{SSB, AH, SW}
+    \action{Buy Arduino controller board}{RK, SSB}
+    \action{Buy other electronics}{RK, SSB}
+\end{items}
+
+\end{document}

@@ -1,0 +1,124 @@
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\newcommand{\meetingType}{board}
+\usepackage{groupmeetings}
+
+\begin{document}
+
+\setdate{2016--01--19}
+\setpresent{
+    \chair{A.~Goodsell},
+    \boardmember{M.~Fry},
+    L.~Foglianti Spadini,
+    A.~Hyslop,
+    A.~Kallaivannan,
+    R.~Kent,
+    C.~Lau,
+    A.~Rutley,
+    S.~Searles-Bryant,
+    S.~Wright,
+    L.~Yeo
+}
+
+\maketitle
+
+\section{Old business}
+% \begin{items}
+%     \item Ratification of minutes from 2016-01-13.
+% \end{items}
+\begin{hiddenitems}
+    \item \priormins
+\end{hiddenitems}
+
+\section{Announcements \& progress}
+\begin{items}
+    \item We now have bench space in Lab  3. No access 1300--1400 every day and 1400--1630 on Wednesdays. A 3d printer is available; a sketch must be made and shown to the technician. (RK)
+    \item Final report has been started on Overleaf. Team can edit at \url{www.overleaf.com/4075528rppsqb}.
+\subsection{Aims and motivations}
+    \item Motivation is to build a robot for education. The robot should be programable by children; they set start/end points and waypoints and whether or not to draw in between. This teaches algorithmic thinking (\emph{e.g.} age 6--9).
+\subsection{Group structure and roles}
+    \item Roles which have been allocated.
+    \begin{hiddensubitems}
+        \item[(AR, AH)] Art review: Looking into history of sand art; choose type of thing to draw.
+        \item[(SW, AK)] Robotics review: Look at movement/digging mech, materials, and history.
+        \item[(SSB)] Education review: Case for teaching children algorithmic thinking; existing ways in which this is achieved.
+        \item[(AG, AH)] Website: Project website.
+    \end{hiddensubitems}
+
+    \item Design outline: Areas of design which should be decided upon this week.
+    \begin{itemize}
+        \item Movement (SW, AK)
+        \item Interface
+        \item Guidance (LFS, CL)
+        \item Construction materials (SW, AK)
+        \item Digging mechanism (SW, AK)
+        \item Electronics platform (CL, SSB)
+    \end{itemize}
+\subsection{Preliminary research}
+    \item Art review. (AR, AH)\\
+        Began as protest of commercialization of art in US. Motivations behind recent works are to bring attention to the environment.\\
+        There are many large scale sculptures using rakes, trowels. Smaller sand patterns use ropes; precise measurement is not emphasized. New movement of small-scale `sand-stories' involving light projection.
+    \item History of robotics review (incl. preliminary survey of methods of movement and digging mechanisms). (SW, AK)
+    \begin{subitems}
+        \item Drawing mechanics: most viable options are rakes/teeth and rollers.
+        \item Locomotion: problems include purchase on sand and not ruining the drawing. Tracks ruin previous drawing; best option looks like SandBot: three wheels.
+        \item Brief summary of history of robotics
+        \item Materials: waterproof/sandproof towels exist, could be used to protect sensitive components.
+    \end{subitems}
+    \item Education review. (SSB)\\
+        Turtles have been used for education since 1960s. Drawing robots exist based on the Logo language; ink-and-paper equivalents of what we aim to build are very popular in primary schools.\\
+        The idea of teaching computation in primary schools has received enormous interest recently.
+    \item Electronics and guidance mechanisms (LFS, CL)
+    \begin{subitems}
+        \item GPS and compass: compass necessary to determine direction of robot. Cost would be c.~\pounds{50}. Not sure if precision is adequate for our needs.
+        \item Laser grids: prebuilt modules are too expensive; should look into building our own. Ultrasound equivalent is too short-range.
+        \item Tethering: requires child to follow the robot.
+        \item Remote control (bluetooth): can use a mobile phone; range of 30 feet. Software exists for Arduino.
+    \end{subitems}
+    \item Electronics platform (SSB)
+    \begin{subitems}
+        \item Arduino: best option for embedded systems; large community online for support. Cost < \pounds{50}.
+        \item NETduino: similar to Arduino but uses .NET framework. Possibly easier to program (several team members know .NET languages).
+        \item Raspberry Pi: more a computer than for embedded systems. Used a lot for education.
+        \item Micro-controller: Requires all supporting circuitry to be built by us; more difficult to program. Possible but would require a lot of time.
+        \item A systems engineer role should be appointed to ensure compatibility of all components (software and hardware). LFS points out that power supplies will be an issue that needs some attention.
+    \end{subitems}
+\end{items}
+
+\section{New Business}
+\begin{items}
+    \item Resources and examples (MF)
+    \begin{subitems}
+        \item Rake: adjustable tines. Too large for our project but mechanism may be of interest
+        \item ``Ed-bot'': small line-following robot built by MF's son.
+        \item USB shield for Arduino: includes dongle for cordless Playstation controller
+        \item Assorted servo motors.
+    \end{subitems}
+    \item Time management plan and Gantt chart. (AG)
+        \begin{subitems}
+            \item SSB thinks more troubleshooting/testing time should be added. AG says build phases include time for testing.
+            \item First software task needs to be a tool to allow hardware to be tested manually.
+            \item A second Gantt chart should be produced once the design has been completed and detailed development processes are known.
+        \end{subitems}
+    \item Discussion of material to be posted on the website. (AG)
+    \begin{subitems}
+        \item Demonstration of website.
+        \item Mirrors report in sections with summaries of each part.
+        \item In future will have photos and a video of the robot.
+    \end{subitems}
+    \item Peer-assessment scores need to be collected
+\end{items}
+
+\vspace{1em}
+\nextmeeting{Tuesday, January 26, at 11:15 in MPEB 3.14a}
+\vspace{1em}
+
+\section{Actions}
+\begin{items}
+    \action{Add research to the report on Overleaf}{all}
+    \action{Investivate building our own LiDAR system for guidance.}{SSB}
+    \action{Collect peer assessment scores}{RK}
+\end{items}
+
+\end{document}

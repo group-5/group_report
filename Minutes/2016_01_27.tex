@@ -1,0 +1,70 @@
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\newcommand{\meetingType}{general}
+\usepackage{groupmeetings}
+
+\begin{document}
+
+\setdate{2016--01--27}
+\setpresent{
+    \chair{A.~Goodsell},
+    \boardmember{M.~Fry},
+    L.~Foglianti Spadini,
+    A.~Kallaivannan,
+    R.~Kent,
+    C.~Lau,
+    A.~Rutley,
+    S.~Searles-Bryant,
+    S.~Wright,
+    L.~Yeo
+}
+\absent{A.~Hyslop \textit{(apologies)}}
+%\alsopresent{\boardmember{P.~Bartlett}}
+
+\maketitle
+
+\section{Materials \& components}
+\begin{items}
+    \item Genuino 101 board, \pounds{24.99} from RS:\\ \url{http://uk.rs-online.com/web/p/processor-microcontroller-development-kits/9139999/?searchTerm=arduino+101&relevancy-data=636F3D3126696E3D4931384E4C446573635461786F6E6F6D794272616E645365617263685465726D32266C753D656E266D6D3D6D617463687061727469616C6D617826706D3D5E5B5C707B4C7D5C707B4E647D5C707B5A737D2D2C2F255C2E5D2B2426706F3D373426736E3D592673743D4B4559574F52445F4D554C54495F414C5048415F4E554D455249432673633D592677633D4E4F4E45267573743D61726475696E6F2031303126}
+    \item GPS shield, \pounds{49.99} from Maplin:\\ \url{http://www.maplin.co.uk/p/gps-shield-with-sd-card-slot-for-arduino-n94dg}
+    \item Motor controller shield, \pounds{17.54} from RS:\\ \url{http://uk.rs-online.com/web/p/processor-microcontroller-development-kits/7589349/}\\
+    Concern that this uses 2 analogue and 6 digital pins.
+    \item Magnetometer (compass) and Accelerometer breakout, \pounds{19.99} from Maplin:\\ \url{http://www.maplin.co.uk/p/adafruit-triple-axis-accelerometermagnetometer-compass-board-lsm303-n46dq}\\
+    The additional accelerometer would be redundant. Also, this is a breakout board so would have to be attached separately with wires leading to the Arduino; could still be inside a box.
+    \item Stepper motor shield, \pounds{18.99} from Maplin:\\ \url{http://www.maplin.co.uk/p/adafruit-motorstepperservo-shield-for-arduino-v2-a61qn}
+    \item Battery compartments, \pounds{2.49} ($\times 2$) from Maplin:\\ \url{http://www.maplin.co.uk/p/1-9v-switched-battery-box-l90an}
+    \item Total cost \pounds{136.48}.
+    \item SSB has some concerns over pin compatibility and using I2C with so many devices (GPS, compass, and steppers all use I2C).
+    \item We will still need to get a few capacitors, stacking headers, and wires but can get those from Maplin on TCR and reclaim cost if necessary.
+    \decisions RK will have the components bought through the lab.
+\end{items}
+
+\section{New Business}
+    \begin{items}
+    \item Decide on a name for the robot.
+    \decisions Sand$\cdot$E (Sand Education, or Sand Art `n' Design Experiment)
+
+    \subsection{Design and hardware}
+        \item Prototype should be built this week
+        \begin{subitems}
+            \item Hardware and Electronics subgroups set meeting to discuss layout of the robot
+            \item Hardware subgroup set a meeting to build the prototype
+        \end{subitems}
+    \subsection{Electronics and software}
+        \item Electronics platform should be built in the simulator LY found (\url{https://123d.circuits.io/}) so programming can start this week.         
+
+\end{items}
+
+\vspace{1em}
+\nextmeeting{Board meeting on Tuesday, January 19, at 11:15 in MPEB 3.14a. General meeting on Wednesday, January 27 at 13:00.}
+\vspace{1em}
+
+\section{Actions}
+\begin{items}
+    \action{Learn about up I$^2$C~}{all}
+    \action{Build a prototype model of the robot}{RK, AR, CL, AK, AH, SSB, SW}
+    \action{Build simulation of circuit on online simulator}{SSB, SW, AH, AG, LY, LFS}
+\end{items}
+
+\end{document}

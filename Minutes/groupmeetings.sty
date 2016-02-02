@@ -1,0 +1,30 @@
+\ProvidesPackage{groupmeetings}
+\usepackage{../groupproject}
+
+
+\setlength\parindent{0pt}
+
+% \setlength{\voffset}{1cm}
+% \addtolength{\textheight}{-4cm}
+% \addtolength{\hoffset}{0.5cm}
+
+%Committee name and members
+\setcommittee{Group~\meetingType~meeting:~\teamname}
+\setmembers{
+  \chair{A.~Goodsell},
+  \boardmember{M.~Fry},
+  L.~Foglianti Spadini,
+  A.~Hyslop,
+  A.~Kallaivannan,
+  R.~Kent,
+  C.~Lau,
+  A.~Rutley,
+  S.~Searles-Bryant,
+  S.~Wright,
+  L.~Yeo
+}
+
+%Custom commands for minutes
+\newcommand{\action}[2]{\item[>] #1 \emph{\textbf{(#2)}}}
+\newcommand{\decisions}{\item[\textbf{Decisions}]}
+\newcommand{\boardmember}[1]{#1 (Board member)}

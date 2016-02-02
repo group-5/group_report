@@ -1,0 +1,85 @@
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\newcommand{\meetingType}{board}
+\usepackage{groupmeetings}
+
+\begin{document}
+
+\setdate{2016--02--02}
+\setpresent{
+    \chair{A.~Goodsell},
+    \boardmember{M.~Fry},
+    L.~Foglianti Spadini,
+    A.~Hyslop,
+    R.~Kent,
+    C.~Lau,
+    A.~Rutley,
+    S.~Searles-Bryant,
+    S.~Wright,
+    L.~Yeo
+}
+\absent{A.~Kallaivannan \textit{(apologies)}}
+%\alsopresent{\boardmember{P.~Bartlett}}
+
+\maketitle
+
+\section{Old business \& announcements}
+\begin{items}
+    % \item Ratification of minutes from 2016-01-26.
+    \item \priormins
+    \item The robot has been officially named Sand$\cdot$E (Sand Education, or Sand Art `n' Design Experiment).
+    \item The components discussed last week have been ordered from RS.
+\end{items}
+
+
+\section{Progress}
+\begin{items}
+    \subsection{Modelling and robot chassis}
+        \item Cardboard models of the robot and the electronics have been built. (discussion)
+        \begin{subitems}
+            \item motors are on underside of chassis
+            \item on this model the large, driven wheels are at the front.
+            \item a more robust, moving prototype will be built this week.
+            \item the electronics box can be bought (see below)
+        \end{subitems}
+        \decisions The two driven wheels should be on the front; the drawing mechanism on the back with the single caster wheel. This will avoid ``trolley syndrome'', where the leading caster wheel will lead the rear wheels astray.
+        \item SSB has found a suitable box and on/off switch. Would require:
+        \begin{itemize}
+            \item ``Hammond Project Box Light Grey 125x100x90mm'' \pounds{6.29} from Maplin (N26HG)
+            % \item ``DPDT Toggle Switch'' \pounds{2.79} from Maplin (FH39N)\\ OR
+            \item ``Miniature 6A AC 230V Rocker Switch DPDT'' \pounds{2.09} (YX65V)
+            \item 2$\times$ ``Maplin Cable Exit Gland 15mm with Sleeve'' \pounds{3.89} (JZ43W)
+        \end{itemize}
+
+    \subsection{Software}
+        \item AG, LFS, LY have got motors running in the online simulator.
+
+    \subsection{Website}
+        \item There is some content on the website, but it is not yet live.
+
+\end{items}
+
+
+\section{New Business}
+\begin{items}
+    \item LFS, RK, and LY have not yet contributed to the report. Now we have finished a lot of the initial design SSB would like to get those sections finished.
+    \subsection{Feedback from MF}
+        \item There seems to be an imbalance in the contributions from different members of the team (4 people seem to be contributing more than others). AG confirms that our team meetings on Wednesdays are very different, and everybody is contributing fairly.
+\end{items}
+
+\vspace{1em}
+\nextmeeting{Tuesday, February 9, at 11:15 in MPEB 3.14a}
+\vspace{1em}
+
+\section{Actions}
+\begin{items}
+    \action{Contribute research to report}{LFS, RK, LY}
+    \action{Write up design work}{all}
+    \action{Build a second prototype}{RK, CL, AK, AR}
+    \action{Calculate how long a PP3 will last driving the motors and investigate other battery options}{SSB}
+    \action{Find out how to recoup expenses for components}{SSB, AG}
+    \action{Download some of Martin Artman's photos for the website \& report}{SSB}
+\end{items}
+
+\end{document}

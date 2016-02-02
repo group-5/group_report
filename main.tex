@@ -1,0 +1,53 @@
+\documentclass[a4paper,11pt,twoside,openright]{report}
+\usepackage{groupproject}
+\usepackage{groupreport}
+
+\begin{document}
+%Title page and table of contents
+    \input{Sections/frontmatter}
+\cleardoublepage
+\todototoc
+\listoftodos
+\cleardoublepage
+
+%Executive summary
+    \input{Sections/acknowledgements}
+\cleardoublepage
+\pagestyle{fancy}
+    \input{Sections/executive_summary}
+
+%Sections of report
+\cleardoublepage
+\fancyhead[RO]{\chaptertype~\thechapter: \small\nameref{section \thechapter}}
+\glsresetall
+\pagenumbering{arabic}
+    \input{Sections/introduction}
+    \input{Sections/design_outline}
+    \input{Sections/design_specification}
+
+
+    \input{Sections/summary}
+
+
+%Include the references
+\cleardoublepage
+\fancyhead[RO]{References}
+\bibliographystyle{unsrtnat}
+\bibliography{../library}
+\cleardoublepage
+\fancyhead[RO]{Glossary}
+\printnoidxglossaries
+
+%Begin annexes
+\cleardoublepage
+\fancyhead[RO]{\chaptertype~\thechapter: \small\nameref{section \thechapter}}
+\appendix
+\makeatletter
+\renewcommand{\@chapapp}{Annex}
+\makeatother
+\renewcommand{\chaptertype}{Annex}
+%Annexes of report
+    \input{Sections/board_meeting_minutes}
+    \input{Sections/the_group}
+
+\end{document}

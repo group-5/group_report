@@ -1,0 +1,72 @@
+\ProvidesPackage{groupproject}
+
+\newcommand{\teamname}{The \SandE Group} %Team name
+\newcommand{\projectTitle}{The Development of a Sand Art--Drawing Robot: \SandE} %Project title
+\newcommand{\thedate}{Draft: \today}
+
+%Packages used in all documents
+% \usepackage{cm-super}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{siunitx}
+	\sisetup{separate-uncertainty}
+\usepackage{setspace}
+	\onehalfspacing
+\usepackage{fancyhdr}
+	\setlength{\headheight}{15pt}
+	\addtolength{\footskip}{15pt}
+\usepackage{amsmath}
+	\numberwithin{equation}{section}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[square,super]{natbib}
+	\renewcommand\bibname{References}
+\usepackage{pdfpages}
+\usepackage{nameref}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+	\restylefloat{figure}
+\usepackage[section]{placeins}
+\usepackage{tocbibind}
+\usepackage[subpreambles=false]{standalone}
+\usepackage[obeyFinal,textsize=small,colorinlistoftodos,color=green!40]{todonotes}
+	\newcommand{\towrite}[1]{\todo[color={red!100!green!40},inline]{\nameref{section \thechapter}:~#1}}
+	\newcommand{\samtodo}[1]{\todo[color={yellow},inline]{#1}}
+
+
+
+%Custom commands for all documents
+\newcommand{\dg}{$^\circ$}
+\newcommand{\writers}[1]{\small {\normalfont(\emph{#1})}}
+\newcommand{\citen}[1]{[\!\!\citenum{#1}]}
+\newcommand{\eg}{\emph{e.g.}~}
+\newcommand{\refspec}[1]{specification item~\ref{spec: #1}}
+
+%Custom commands for formatting
+\newcommand{\chaptertype}{Section}
+% \newcommand{\thewriter}{}
+% \newcommand{\nowriter}{\renewcommand{\thewriter}{}}
+\newcommand{\mySection}[2]{\section[#1]{#1 \hfill \raggedleft\writers{#2}} }%\renewcommand{\thewriter}{#2}}
+\newcommand{\mySubsection}[2]{\subsection[#1]{#1 \hfill \writers{#2}} }
+\newcommand{\myBlindSection}[2]{\section*{#1 \hfill \writers{#2}} }
+\newcommand{\myBlindSubsection}[2]{\subsection*{#1 \hfill \writers{#2}} }
+
+%Custom commands for names
+\newcommand{\AG}{A.~Goodsell}
+\newcommand{\LFS}{L.~Foglianti Spadini}
+\newcommand{\AH}{A.~Hyslop}
+\newcommand{\AK}{A.~Kallaivannan}
+\newcommand{\RK}{R.~Kent}
+\newcommand{\CL}{C.~Lau}
+\newcommand{\AR}{A.~Rutley}
+\newcommand{\SSB}{S.~Searles-Bryant}
+\newcommand{\SW}{S.~Wright}
+\newcommand{\LY}{L.~Yeo}
+
+\newcommand{\electronicsGroup}{\AH, \SSB, \SW}
+\newcommand{\softwareGroup}{\LFS, \AG, \LY}
+\newcommand{\hardwareGroup}{\AK, \RK, \CL, \AR}
+
+\newcommand{\SandE}{Sand$\cdot$E~}
