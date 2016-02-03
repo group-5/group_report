@@ -43,7 +43,7 @@ The aim for this project is to develop a working prototype of a programmable, au
     \subsection{GPS}
     \gls{GPS} receivers use a constellation of 31 satellites orbiting over 20,000 km, with a revolution period of 12 hours (as of February 1st 2016). Every satellite transmits data packs, which contains: the time, current position, other satellites positions and other information. The \gls{GPS} receiver receives the information about position from the radio transmissions of the satellites it can track. 4 satellites are normally used to compute the position. Although it is possible to measure the position with fewer satellites, the margin of error is large.
 
-    \gls{GPS} shields are inexpensive and as a guidance system, obviously have a very large range.  However, the accuracy of \gls{GPS}, which may be within few metres, may depend a number of things such as signal noise, satellite position, and obstruction from tall buildings. Therefore, if GPS is to be used as the guidance system for the robot, then its worth considering a location that is isolated from tall building when it comes to the testing of the robot because signal noise can cause errors up to \SI{10}{\meter} and obstruction from tall buildings can cause errors three times more than the error from signal noise.\cite{gpsbasics} There are ways of getting the accuracy of the \gls{GPS} down to a few centimetres by using correction methods such as a differential \gls{GPS}, using a combination of \gls{GPS} and some other local positioning systems such as electronic compasses or \gls{INS}. However, these correction methods are complex and expensive and therefore they are not feasible solutions to increasing the accuracy of \gls{GPS}.
+    \gls{GPS} \glspl{shield} are inexpensive and as a guidance system, obviously have a very large range.  However, the accuracy of \gls{GPS}, which may be within few metres, may depend a number of things such as signal noise, satellite position, and obstruction from tall buildings. Therefore, if GPS is to be used as the guidance system for the robot, then its worth considering a location that is isolated from tall building when it comes to the testing of the robot because signal noise can cause errors up to \SI{10}{\meter} and obstruction from tall buildings can cause errors three times more than the error from signal noise.\cite{gpsbasics} There are ways of getting the accuracy of the \gls{GPS} down to a few centimetres by using correction methods such as a differential \gls{GPS}, using a combination of \gls{GPS} and some other local positioning systems such as electronic compasses or \gls{INS}. However, these correction methods are complex and expensive and therefore they are not feasible solutions to increasing the accuracy of \gls{GPS}.
 
 
 
@@ -60,25 +60,23 @@ The aim for this project is to develop a working prototype of a programmable, au
         % \vspace{-11pt}
         \centering
         \begin{subfigure}[b]{0.45\textwidth}
-            \missingfigure{Arduino}
-            % \includegraphics[width=\textwidth]{Files/arduino}
-            \caption{The Arduino controller circuit board}
+            \includegraphics[width=\textwidth]{Files/arduino}
+            \caption{An Arduino UNO.}
             \label{fig: arduino}
         \end{subfigure}
         ~
         \begin{subfigure}[b]{0.45\textwidth}
-            \missingfigure{Arduino with shields}
-            % \includegraphics[width=\textwidth]{Files/arduino_with_shields}
-            \caption{An Arduino with shields attached}
+            \includegraphics[width=\textwidth]{Files/arduino_with_shields}
+            \caption{An Arduino with 2 \glspl{shield} attached.}
             \label{fig: arduino shields}
         \end{subfigure}
-        \caption{\small (Retrieved from on 2016--01--25)}
+        \caption{\small (Retrieved from \citen{robotshop} on 2016--01--25)}
         \label{fig: arduino and shields}
         % \vspace{-20pt}
     \end{figure}
     The robot will need a control system to plan and control its movement, and to control the drawing tool. This system could be developed from proprietary systems or built by the group for this specific application.
 
-    \paragraph{Arduino} (Figure~\ref{fig: arduino}) is an open-source micro-controller system designed for embedded systems control. It can be expanded by the use of \emph{shields} (Figure~\ref{fig: arduino shields}), circuit boards designed to attach to header pins on the primary micro-controller board to created stacks of circuits with different functions. This would allow us to build a control system for the robot using pre-designed circuits. Shields, which can be sourced from many electronics suppliers, are available to add bluetooth, GPS, motor control, and many other functions to the primary circuit.\\
+    \paragraph{Arduino} (Figure~\ref{fig: arduino}) is an open-source micro-controller system designed for embedded systems control. It can be expanded by the use of \emph{\glspl{shield}} (Figure~\ref{fig: arduino shields}), circuit boards designed to attach to header pins on the primary micro-controller board to created stacks of circuits with different functions. This would allow us to build a control system for the robot using pre-designed circuits. \Glspl{shield}, which can be sourced from many electronics suppliers, are available to add bluetooth, GPS, motor control, and many other functions to the primary circuit.\\
     There is a large online community supporting the Arduino project, which could be leveraged to solve programming difficulties if they arise. The Arduino project provides an integrated development environment (IDE); the Arduino is programmed using a language based on the C and C++ languages.
     \paragraph{Netduino} is a variant of the Arduino which runs on Microsoft's .NET framework. The online support community for this system is smaller, although some group members (\AG, \LY) have a pre-existing familiarity with the .NET framework.\\
 
