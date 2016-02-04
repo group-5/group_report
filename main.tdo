@@ -2,7 +2,6 @@
 \contentsline {todo}{\color@fb@x {}{black}{}{red!100!green!33}{\leavevmode {\color {red!100!green!33}o}}\ Write acknowledgements}{vii}{section*.5}
 \contentsline {todo}{\color@fb@x {}{black}{}{red!100!green!40}{\leavevmode {\color {red!100!green!40}o}}\ \nameref {section 0}:\nobreakspace {}Executive summary}{ix}{section*.7}
 \contentsline {todo}{\color@fb@x {}{black}{}{red!100!green!40}{\leavevmode {\color {red!100!green!40}o}}\ \nameref {section 1}:\nobreakspace {}project brief}{1}{section*.11}
-\contentsline {todo}{Figure: A picture of sketchbots}{6}{figure.1.3}
 \contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ This section is identical to Section\nobreakspace {}\ref {summary: why}. Here should be some options for motivations and reasons for them, perhaps? (More in keeping with the rest of the chapter.)}{9}{section*.12}
 \contentsline {todo}{\color@fb@x {}{black}{}{red!100!green!40}{\leavevmode {\color {red!100!green!40}o}}\ \nameref {section 2}:\nobreakspace {}interface}{12}{section*.13}
 \contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ This is ambiguous; what do you mean? (CL)}{13}{section*.14}
@@ -21,3 +20,4 @@
 \contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Currently this is identical to Section \ref {outline aims and motivations}. SSB thinks it fits really nicely here so perhaps something should be put in the design outline that describes more possibilities?}{21}{section*.38}
 \contentsline {todo}{\color@fb@x {}{black}{}{red!100!green!40}{\leavevmode {\color {red!100!green!40}o}}\ \nameref {section 4}:\nobreakspace {}definition of Inertial Navigation System}{25}{section*.42}
 \contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Check you all approve of these photos. If not, please supply SSB with a 2:3 photo.}{41}{section*.43}
+\contentsline {todo}{\color@fb@x {}{black}{}{green!40}{\leavevmode {\color {green!40}o}}\ Ask MF: would we usually put data sheets for components (motors \emph {etc.}) in the appendix?}{42}{section*.44}

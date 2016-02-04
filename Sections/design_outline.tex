@@ -1,10 +1,15 @@
 \chapter{Design Outline}\label{design outline}\label{section \thechapter}
+% Things to include either here or in the spec:
+% Choosing motors
+% Choosing gears/etc
+% Choosing servos
+
 
 \mySection{Aims and motivations}{\AG}\label{outline aims and motivations}
-\todo{This section is identical to Section~\ref{summary: why}. Here should be some options for motivations and reasons for them, perhaps? (More in keeping with the rest of the chapter.)}
-The invention of the difference engine in 1833, came with it an entire new process of thought and development. Since then, the field of computation and robotics has become one of the largest in the world. It is a field that requires developers to suspend their usual way of thinking and instead look at tasks and problems as a computer. These ways of thinking are not encountered in daily life. Other intellectual and physical fields have their foundations discovered through juvenile interactions. However, the ability to approach a task with an algorithmic method---a loop or conditional statements---is not naturally acquired. These skills must therefore be taught through non-conventional means. This could be as a teenager or adult, when first being confronted with programming; however, years of educational studies have shown that skills and understanding are much more easily acquired at an early age. This is the motivation of the \SandE project: to develop a method, useable by schools and parents, to begin to nurture programming skills in children.
+    \todo{This section is identical to Section~\ref{summary: why}. Here should be some options for motivations and reasons for them, perhaps? (More in keeping with the rest of the chapter.)}
+    The invention of the difference engine in 1833, came with it an entire new process of thought and development. Since then, the field of computation and robotics has become one of the largest in the world. It is a field that requires developers to suspend their usual way of thinking and instead look at tasks and problems as a computer. These ways of thinking are not encountered in daily life. Other intellectual and physical fields have their foundations discovered through juvenile interactions. However, the ability to approach a task with an algorithmic method---a loop or conditional statements---is not naturally acquired. These skills must therefore be taught through non-conventional means. This could be as a teenager or adult, when first being confronted with programming; however, years of educational studies have shown that skills and understanding are much more easily acquired at an early age. This is the motivation of the \SandE project: to develop a method, useable by schools and parents, to begin to nurture programming skills in children.
 
-The aim for this project is to develop a working prototype of a programmable, autonomous robot with the ability to draw large scale art in sand. The robot will be able to accept a set of repeatable instructions from a student. These instructions could include: navigation, for example an instruction to go from point A to B before turning and traveling to point C; the ability to control whether the robot should be drawing at any given time, and also the thickness of the line drawn. The student will create these instructions through a graphical user interface, before they are uploaded to the robot and their design is created in sand. The intention is that by passing a design to a robot, students will be forced to think about how a computer will tackle a task they would find simple. Hopefully, students will be able to understand that computers use a system of specific logic that can create wonderful things, which would take much longer by hand.
+    The aim for this project is to develop a working prototype of a programmable, autonomous robot with the ability to draw large scale art in sand. The robot will be able to accept a set of repeatable instructions from a student. These instructions could include: navigation, for example an instruction to go from point A to B before turning and traveling to point C; the ability to control whether the robot should be drawing at any given time, and also the thickness of the line drawn. The student will create these instructions through a graphical user interface, before they are uploaded to the robot and their design is created in sand. The intention is that by passing a design to a robot, students will be forced to think about how a computer will tackle a task they would find simple. Hopefully, students will be able to understand that computers use a system of specific logic that can create wonderful things, which would take much longer by hand.
 
 
 \mySection{Movement}{\SW}
@@ -12,6 +17,7 @@ The aim for this project is to develop a working prototype of a programmable, au
 
     The main methods of robot locomotion that might be relevant are wheeled (or caterpillar tracked), walking, rolling, or slithering. Considering the scope of this project, and the budget available, the latter options are not viable. Companies such as Boston Dynamics have budgets of millions of dollars to work on the development of walking technology -- achieving a robot capable of walking is a significant feat, even before considering drawing. While rolling or slithering may potentially be workable, they would contribute significant design complications to any kind of `on/off' functionality. Flying private drones have increased in popularity dramatically; in considering a drone type robot as an option, the main challenges are the extreme comparative difficulty of achieving flight compared with traction and drawing a line in the sand. Creating a flying drone from scratch would pose many challenges, which it is unlikely we could surmount with this project's resources. The marker design also poses significant challenges -- a marker fixed rigidly to a drone is likely to interfere with flight and a free-hanging marker runs the risk of not providing enough pressure to create a line. The most viable locomotion solutions are caterpillar tracks and wheels.\\
     Caterpillar tracks combine very capable terrain handling with on-a-point turning, however they are very likely to disrupt the line left behind the robot, especially when on-a-point turning.  With the right design and material, wheels might prove sufficiently able to handle the terrain and also cause limited harm to the robot's drawn lines. Such wheels would need to have a large surface area and be made of a reasonably soft material (\eg soft touch plastic) -- minimizing the robot's overall weight would also be important in making such a design choice viable. Although wheels open opportunities in terrain handling and line preservation, they come up short of caterpillar tracks on turning ability. A short wheelbase might go some way to improve this. There is also the potential of a three-wheel configuration, instead of four (or more) wheels -- this was implemented in Disney's BeachBot (Section~\ref{sand-drawing robots}) to the benefit of the robot’s turning circle. It should be noted that a three-wheel design raises stability concerns. Ultimately the decision between caterpillar tracks and wheels comes to a question of whether, or to what extent, the child instructing the robot should be limited in their design.
+
 
 \mySection{Digging mechanism}{\SW}
     At its most basic level, a beach-scale sand drawing robot need only leave a line in the sand wherever it travels, in order to produce a picture -- this poses a severe constraint on what can be drawn. In the case of our educational robot, the child would have the limitation of instructing the robot to draw a picture with only a single continuous movement. This `always on' approach to the drawing mechanism can be improved upon.
@@ -26,7 +32,6 @@ The aim for this project is to develop a working prototype of a programmable, au
 
 \mySection{Interface}{writer TBA}
 \towrite{interface}
-
 
 \mySection{Guidance}{\CL}
     In order to draw an image in a given area, the robot will need to be guided by some system.
@@ -46,7 +51,6 @@ The aim for this project is to develop a working prototype of a programmable, au
     \gls{GPS} \glspl{shield} are inexpensive and as a guidance system, obviously have a very large range.  However, the accuracy of \gls{GPS}, which may be within few metres, may depend a number of things such as signal noise, satellite position, and obstruction from tall buildings. Therefore, if GPS is to be used as the guidance system for the robot, then its worth considering a location that is isolated from tall building when it comes to the testing of the robot because signal noise can cause errors up to \SI{10}{\meter} and obstruction from tall buildings can cause errors three times more than the error from signal noise.\cite{gpsbasics} There are ways of getting the accuracy of the \gls{GPS} down to a few centimetres by using correction methods such as a differential \gls{GPS}, using a combination of \gls{GPS} and some other local positioning systems such as electronic compasses or \gls{INS}. However, these correction methods are complex and expensive and therefore they are not feasible solutions to increasing the accuracy of \gls{GPS}.
 
 
-
 \mySection{Construction materials}{\AK}
     An important consideration when deciding on a material for the body and base of the robot is the penetration into the sand. A denser material will cause the robot to sink more, but lighter materials will mean a compromise in strength, stability, or price. However, if the wheels or tracks of the robot are wise enough, there may be some freedom when deciding what materials the components of the robot should be made of.\\
     Researchers at the Georgia Institute of Technology have been able to vary the strength of the supporting ground by using varying air flow from beneath.\cite{Qian} This has allowed them to vary the stiffness of the sand and observe the performance of a robot on these surfaces.
@@ -54,8 +58,7 @@ The aim for this project is to develop a working prototype of a programmable, au
     The robot should be made to be water resistant; contact with water at some point is inevitable and water coming into contact with the electrics would reduce the lifespan and reliability of the machine. Damage caused by sand should also be a consideration: the machine is likely to come into contact with a substantial amount of sand. Sand is silica, which is very abrasive; if this abrasion occurs around the more sensitive areas of the machine it could cause extensive damage. Sandusa is a range of beach products that are water- and sand-proof.\cite{sandusa} This is due to a smooth nylon material that allows sand to slide off easily combined with an inner waterproof lining. This material could be used to protect the robot.
 
 
-
-\mySection{Electronics platform}{\SSB}
+\mySection{Electronics \& control}{\SSB}
     \begin{figure}%{I}{0.45\textwidth}
         % \vspace{-11pt}
         \centering
@@ -80,15 +83,16 @@ The aim for this project is to develop a working prototype of a programmable, au
     There is a large online community supporting the Arduino project, which could be leveraged to solve programming difficulties if they arise. The Arduino project provides an integrated development environment (IDE); the Arduino is programmed using a language based on the C and C++ languages.
     \paragraph{Netduino} is a variant of the Arduino which runs on Microsoft's .NET framework. The online support community for this system is smaller, although some group members (\AG, \LY) have a pre-existing familiarity with the .NET framework.\\
 
-\todo[inline]{Electronics: rework the following paragraphs}
+    \todo[inline]{Electronics: rework the following paragraphs}
     \paragraph{Paspberry Pi}is a small single-board computer developed in the UK to promote access to computer science education in schools. Because on this, the platform is already widely used in an educational setting and thus would allow this project to be more easily integrated into the teaching of computer science. The computer itself is low-cost (<\pounds{50}\todo{check the price of Raspberry Pi}).\\
     The Raspberry Pi Foundation also produce smaller versions of the Raspberry Pi computer which are designed for use in embedded systems. These boards are less customizable than the Arduino system. However, it is compatible with the Python language, which has an extensive support community online and is familiar to all the group, as well as C, C++, Java, and others.
 
     \paragraph{A micro-controller} integrated circuit could be used in a purpouse-built circuit to control the robot. This would require the design of all the supporting electronics. The microprocessor would need to be programmed in a low-level assembly language or a language designed specifically for the micro-controller product we use.\\
     These components would be cheaper than commercially available systems, but would require much more electronics design work and fabrication.
 
+
 \section{Summary and decisions}
-\towrite{summary and decisions}
+    \towrite{summary and decisions}
     \myBlindSubsection{Aims and motivations}{writer TBA}
 
     \myBlindSubsection{Drawing tool}{writer TBA}
