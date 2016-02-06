@@ -1,0 +1,65 @@
+\chapter{List of Components}\label{list of components}\label{section \thechapter}
+\todo[inline]{Check appropriate page-breaks in this table}
+% \centering
+% \begin{longtable}{|l|}
+%   ... your table ...
+% \end{tabular}
+
+\begin{longtable}{|c|p{0.2\textwidth}|p{0.15\textwidth}|p{0.12\textwidth}|}
+% KILLED & LINE!!!! \kill
+\hline\hline
+% \multicolumn{5}{c}%
+% {This part appears at the top of the table}\\
+\textsc{Component}&\textsc{Manufacturer}&\textsc{Supplier}&\textsc{Stock \#}\\
+\hline\hline
+\endfirsthead
+\caption[]{(continued)}\\
+\hline\hline
+% \multicolumn{5}{c}%
+% {This part appears at the top of every other page}\\
+\textsc{Component}&\textsc{Manufacturer}&\textsc{Supplier}&\textsc{Stock \#}\\
+\hline\hline
+\endhead
+\hline\hline
+% This goes at the&bottom.\\
+\multicolumn{4}{|c|}%
+{\emph{Continued overleaf}}\\
+\hline\hline
+\endfoot
+\hline\hline
+\multicolumn{4}{|c|}%
+{\emph{End of list}}\\
+\hline\hline
+\endlastfoot
+% \component{name}{model}{manufacturer}{supplier}{number}
+    \multicolumn{4}{|c|}{\textsc%
+    {Chassis and digging mechanism}}\\ \hline
+        \component{~}{~}{~}{~}{~}
+    \hline\hline
+    \multicolumn{4}{|c|}{\textsc%
+    {Electronics and control}}\\ \hline
+        \component{Arduino}{Genuino 101}{Arduino}{RS Components}{913-9999}
+        \component{Motor shield}{Arduino Motor Shield Rev3}{Arduino}{RS Components}{758-9349}
+        \component{GPS shield}{GPS Shield With SD Card Slot for Arduino}{LinkSprite}{Maplin}{N94DG}
+        \component{Magnetometer}{Triple-axis Accelerometer + Magnetometer (Compass) Board}{Adafruit}{Maplin}{N46DQ}
+        \component{Servo shield}{Motor/Stepper/Servo Shield for Arduino v2}{Adafruit}{Maplin}{A61QN}
+    \hline\hline
+    \multicolumn{4}{|c|}{\textsc%
+    {Power}}\\ \hline
+        \component{Battery}{7.4V 1500mAh 35C+ continuous discharge lipo battery}{Giant-Power}{Component Shop}{LN215}
+    \hline\hline
+    \multicolumn{4}{|c|}{\textsc%
+    {Motors and movement}}\\ \hline
+        \component{Motor}{919D Series 35mm single ratio (148:1) metal gearbox}{MFA ComoDrills}{}{RE-540/1}
+    \hline\hline
+    \multicolumn{4}{|c|}{\textsc%
+    {Miscellaneous}}\\ \hline
+        \component{Battery box}{9V Switched Battery Box}{Maplin}{Maplin}{L90AN}
+        \component{Switch}{Miniature 6A AC 230V Rocker Switch DPDT}{Maplin}{Maplin}{YX65V}
+        \component{Grommet}{Cable Exit Gland 15mm with Sleeve}{Maplin}{Maplin}{JZ43W}
+        \component{Plug}{2.1 $\times$ 5.5mm DC Power Plug}{Maplin}{Maplin}{HH60Q}
+        \component{Terminals}{Spade Terminals}{Maplin}{Maplin}{N93CR}
+        \component{Wire}{Equipment Wire 24-0.2mm}{Maplin}{Maplin}{BA40T KR31J BA42V}
+
+
+\end{longtable}
