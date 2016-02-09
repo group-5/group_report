@@ -1,6 +1,6 @@
-\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
 % \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
-% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
 \newcommand{\meetingType}{board}
 \usepackage{groupmeetings}
 
@@ -8,7 +8,7 @@
 
 \setdate{2016--02--09}
 \setpresent{
-    \chair{A.~Goodsell},
+    \chair{S.~Searles-Bryant},
     \boardmember{M.~Fry},
     L.~Foglianti Spadini,
     A.~Hyslop,
@@ -16,47 +16,84 @@
     R.~Kent,
     C.~Lau,
     A.~Rutley,
-    S.~Searles-Bryant,
     S.~Wright,
     L.~Yeo
 }
-% \absent{ \textit{(apologies)}}
-%\alsopresent{\boardmember{P.~Bartlett}}
+\absent{A.~Goodsell \textit{(apologies)}}
+% \alsopresent{\boardmember{P.~Bartlett}}
 
 \maketitle
-
+\centering {Malet Place Engineering Building, room 3.14a}
 \section{Old business \& announcements}
 \begin{items}
-    \item Ratification of minutes from 2016--02--02.
-    % \item \priormins
+    % \item Ratification of minutes from 2016--02--02.
+    \item \priormins
 \end{items}
 
 
-\section{Progress}
+
+
+
+Ashley: suggests we use Eagle software for neater circuit diagrams design
+
+
+Sam B: Alex website is live hosted on github by Luke
+Alan: works on mobile as well (unexpectedley)
+Sam B: everybody gives github username to be inserted in the project or send me the text and I'll add it for you
+
+next meeting tomorrow and meet as always tuesday and wedensday of reading week.
+Martin: position of GPS?
+
+Mid term review: group 4 reviews us and we review group 6
+Sam W and Lorenzo propose for reviewing dependent on
+
+
+
+
+
+
+
+
+\section{Progress \& discussion}
 \begin{items}
     \subsection{Building the robot}
         \item We have all of the components that have been ordered, including a battery for the motors
-
+        \begin{subitems}
+            \item MF suggests last year's wheels are too big. Team confirm and plan to cut them down.
+            \item The new battery has come; it is surprisingly light (designed for flying robots).\\
+            AH concerned the capacity is not enough (20 mins). SSB replies 20 minutes is only at maximum efficiency. Estimates around 1 hour of overall beach drawing time. Also suggests we can use more batteries since they are so light.
+            \item Complication: charging the new battery. SSB in conversation with supplier to determine charging pattern (constant current, then constant voltage to finish).
+            \item We still need the acrylic for the chassis. AR will source; it will cost \pounds{23} (2/3 days shipping) for a piece that is shaped.
+            \item RK shows a picture of new prototype of the robot chassis. AR points out that the wheels need to be narrower; this will affect the design of the drawing mechanism. RK suggests IoM can cut the wheels for us.\\
+            MF suggests we should wrap the wheels to improve grip on sand.
+            \item AR has a prototype drawing mechanism attached to a servo. Group suggest that two arms per servo should be used.\\
+            The method by which the servos will be attached to the chassis needs consideration.
+        \end{subitems}
     \subsection{Robot control}
-        \item We have put together the Genuino and we have been able to get the motors moving.
-
+        \item We have put together the Genuino and the motor control shield and we have been able to get the motors moving.
+        \item We had trouble with the code for the servo control.
     \subsection{Website}
         \item The website is live at \url{http://group-5.github.io/sand-e/}.
-
 \end{items}
 
 \section{New Business}
 \begin{items}
-    \item Timeline for building the robot.
+    \subsection{Timeline for building the robot}
+        \item The electronics can be assembled inside a box. RK: The box for electronics is in the lab.
+        \item A production plan should be written by the group this week.
 \end{items}
 
 \vspace{1em}
-\nextmeeting{Tuesday, February 16, at 11:15 in MPEB 3.14a}
+There will be no board meeting next week because it is reading week.
+\nextmeeting{Tuesday, February 23, at 11:15 in MPEB 3.14a}
 \vspace{1em}
 
 \section{Actions}
 \begin{items}
-    \action{}{}
+    \action{Source acrylic for chassis}{AR}
+    \action{Give GitHub usernames to SSB or LY for access to website and project report}{all}
+    \action{Write production plan for the robot}{all}
+    \action{Contact Prof. Ford regarding the mid-term review}{SSB}
 \end{items}
 
 \end{document}
