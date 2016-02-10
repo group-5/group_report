@@ -1,0 +1,40 @@
+% In this section:
+% Plan the manufacture process step by step.
+
+\chapter{Plan of Manufacture}\label{manufacture plan}\label{section \thechapter}
+The first functioning prototype of the \SandE robot was built from the designs in section \ref{design specification} according to the following plan.
+
+\begin{multicols}{2}
+\begin{enumerate}
+
+    \section{Chassis}
+
+    \section{Electronics and control systems}
+        \item buy box
+        \item Cut holes in electronics housing
+        \item Attach the grommets to the electronics housing
+        \item Solder spade connectors to the motor cables
+        \item Thread all cables through the appropriate holes in the housing and through the nut for the switch
+        \item Solder the \SI{2.1}{mm} jack plug to cables
+        \item Solder the positive jack plug cable to the switch
+        \item Solder the \SI{0}{\volt} jack plug cable and the \SI{0}{\volt} connection of the tamiya connector to the c terminal of the \SI{9}{\volt} battery box
+        \item Solder the positive connection of the tamiya connector to the switch
+        \item Solder the \SI{9}{\volt} battery box to the switch
+        \item Install the \SI{9}{\volt} battery box
+        \item Install the switch
+        \item Solder the headers to the \gls{servo} \gls{shield}
+        \item Connect the \glspl{shield} together and to the \gls{Genuino}
+        \item Solder the cables to the \gls{magnetometer} breakout board
+        \item Connect the \gls{magnetometer} to the stack of Arduino \glspl{shield}
+        \item Cut the VIN and \SI{5}{\volt} pins between the control section and the output section
+        \item Screw the stack of Arduino \glspl{shield} and the \gls{magnetometer} to the housing base
+        \item Feed the motor and \gls{servo} cables through grommets and attach them to the stack of Arduino \glspl{shield}
+        \item Screw the strain relief sections onto the grommets
+
+    \section{Integrating systems}
+        \item Attach the base of the electronics housing to the chassis
+        \item Attach all connectors to the electronics system
+        \item Attach the electronics housing to its base
+
+\end{enumerate}
+\end{multicols}
