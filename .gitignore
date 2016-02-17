@@ -9,4 +9,5 @@ main.pdf
 *.out
 *.synctex.gz
 *.toc
+*.lol
 Resources/*

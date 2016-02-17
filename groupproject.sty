@@ -35,6 +35,17 @@
 \usepackage[obeyFinal,textsize=small,colorinlistoftodos,color=green!40]{todonotes}
 	\newcommand{\towrite}[1]{\todo[color={red!100!green!40},inline]{\nameref{section \thechapter}:~#1}}
 	\newcommand{\samtodo}[1]{\todo[color={yellow},inline]{#1}}
+% \usepackage{listings}
+% 	\lstloadlanguages{C++}
+% 	\lstset{language={C++},numbers=left,numberstyle=\tiny}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage[cachedir={Resources/minted},draft=true]{minted}
+	% \renewcommand{\listingscaption}{Genuino code}
+	\setminted{linenos=true,breaklines=true,breakautoindent=true,fontfamily=helvetica}
+	\newcommand{\inputcode}[3]{\setminted{firstline=#1,lastline=#2}%
+	\inputminted{cpp}{Code/#3}%
+	}
 
 
 
