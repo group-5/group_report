@@ -38,7 +38,14 @@
 % \usepackage{listings}
 % 	\lstloadlanguages{C++}
 % 	\lstset{language={C++},numbers=left,numberstyle=\tiny}
-\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage[cachedir={Resources/minted},draft=true]{minted}
+	% \renewcommand{\listingscaption}{Genuino code}
+	\setminted{linenos=true,breaklines=true,breakautoindent=true,fontfamily=helvetica}
+	\newcommand{\inputcode}[3]{\setminted{firstline=#1,lastline=#2}%
+	\inputminted{cpp}{Code/#3}%
+	}
 
 
 
