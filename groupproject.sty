@@ -9,7 +9,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
 \usepackage{siunitx}
-	\sisetup{separate-uncertainty,range-units=single,range-phrase = --}
+	\sisetup{separate-uncertainty,range-units=single,range-phrase={--},list-final-separator={, and }}
 \usepackage{setspace}
 	\onehalfspacing
 \usepackage{fancyhdr}
@@ -38,14 +38,20 @@
 % \usepackage{listings}
 % 	\lstloadlanguages{C++}
 % 	\lstset{language={C++},numbers=left,numberstyle=\tiny}
+%	\renewcommand{\listingscaption}{Genuino code}
 \usepackage{xcolor}
 \usepackage{fancyvrb}
+%%%%														%%%%
+%%%%                 MINTED PACKAGE IS HERE                 %%%%
+%%%%														%%%%
+%%%%                    change this option:   v             %%%%
 \usepackage[cachedir={Resources/minted},draft=true]{minted}
-	% \renewcommand{\listingscaption}{Genuino code}
-	\setminted{linenos=true,breaklines=true,breakautoindent=true,fontfamily=helvetica}
+	% \usemintedstyle{trac}
+	\setminted{linenos=true,breaklines=true,breakautoindent=true,fontfamily=courier,xleftmargin={1cm},stripall=true,stripnl=true}
 	\newcommand{\inputcode}[3]{\setminted{firstline=#1,lastline=#2}%
 	\inputminted{cpp}{Code/#3}%
 	}
+	\newmintinline{cpp}{}
 
 
 

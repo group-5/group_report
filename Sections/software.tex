@@ -1,7 +1,12 @@
 \chapter{Software}\label{software}\label{section \thechapter}
+\noindent All of the \gls{Arduino} code (\glspl{sketch}) used for this project are reproduced in full in Annex~\ref{code}.
 
-\begin{listing}[h!]
-    \inputcode{6}{9}{test.ino}
-    \caption{Example of some code in a listing. {\small (From \texttt{test.ino})}}%
-    \label{lst: example}
-\end{listing}
+\mySection{Movement}{\AG}
+    \begin{listing}[bth]
+        \inputcode{82}{106}{test_routine.ino}
+        \caption{Code used to test the moving components of the robot. This sketch was written by \AG. (Lines 82--106 from \hyperref[ino:test_routine]{test\_routine.ino})%
+        }%
+        \label{lst: test sketch}
+    \end{listing}
+    The robot is powered by two DC motors (Section~\ref{}). Control of these was achieved through the use of a \gls{Genuino} Motor \Gls{shield} (Section~\ref{}). This shield uses pins \numlist{3;8;9;11;12}. The motor id activated and controlled using Arduino functions \cppinline{pinMode}, \cppinline{digitalWrite}, and \cppinline{analogWrite}.\\
+    A \gls{sketch} was created which would allow testing of all of the moving components on the robot. This allowed the robot to be tested before the software was complete (Listing~\ref{lst: test sketch}).
