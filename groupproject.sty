@@ -4,7 +4,7 @@
 \newcommand{\projectTitle}{The Development of a Sand Art--Drawing Robot: \SandE} %Project title
 \newcommand{\thedate}{Draft: \today}
 
-%Packages used in all documents
+% Packages used in all documents
 % \usepackage{cm-super}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
@@ -47,7 +47,8 @@
 %%%%                    change this option:   v             %%%%
 \usepackage[cachedir={Resources/minted},draft=true]{minted}
 	% \usemintedstyle{trac}
-	\setminted{linenos=true,breaklines=true,breakautoindent=true,fontfamily=courier,xleftmargin={1cm},stripall=true,stripnl=true}
+	\setminted{linenos=true,breaklines=true,breakautoindent=true,%fontfamily=courier,
+	xleftmargin={1cm},stripall=true,stripnl=true}
 	\newcommand{\inputcode}[3]{\setminted{firstline=#1,lastline=#2}%
 	\inputminted{cpp}{Code/#3}%
 	}
@@ -55,15 +56,17 @@
 
 
 
-%Custom commands for all documents
+% Custom commands for all documents
 \newcommand{\dg}{$^\circ$}
 \newcommand{\writers}[1]{\small {\normalfont(\emph{#1})}}
 \newcommand{\citen}[1]{[\!\!\citenum{#1}]}
 \newcommand{\eg}{\emph{e.g.}~}
+\newcommand{\ie}{\emph{i.e.}~}
+\newcommand{\etc}{\emph{etc.}~}
 \newcommand{\refspec}[1]{specification item~\ref{spec: #1}}
 \newcommand{\component}[5]{\parbox[t]{0.4\textwidth}{\raggedright\textbf{#1}\\ {\small #2}\\~} & #3 & #4 & #5\\ \hline}
 
-%Custom commands for formatting
+% Custom commands for formatting
 \newcommand{\chaptertype}{Section}
 % \newcommand{\thewriter}{}
 % \newcommand{\nowriter}{\renewcommand{\thewriter}{}}
@@ -72,7 +75,7 @@
 \newcommand{\myBlindSection}[2]{\section*{#1 \hfill \writers{#2}} }
 \newcommand{\myBlindSubsection}[2]{\subsection*{#1 \hfill \writers{#2}} }
 
-%Custom commands for names
+% Custom commands for names
 \newcommand{\AG}{A.~Goodsell}
 \newcommand{\LFS}{L.~Foglianti Spadini}
 \newcommand{\AH}{A.~Hyslop}

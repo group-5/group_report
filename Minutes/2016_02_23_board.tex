@@ -1,6 +1,6 @@
-\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
 % \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
-% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
 \newcommand{\meetingType}{board}
 \usepackage{groupmeetings}
 
@@ -24,31 +24,49 @@
 % \alsopresent{\boardmember{P.~Bartlett}}
 
 \maketitle
-\centering {Malet Place Engineering Building, room 3.14a}
+% \centering {Malet Place Engineering Building, room 3.14a}
 \section{Old business \& announcements}
 \begin{items}
-    \item Ratification of minutes from 2016--02--02.
-    % \item \priormins
+    % \item Ratification of minutes from 2016--02--02.
+    \item \priormins
 \end{items}
 
 \section{Progress \& discussion}
 \begin{items}
-    \section{Mid-term review}
-        \item Discussion of notes from interviews of Group 6.
+    \subsection{Mid-term review}
+        \item Discussion of notes from interviews of Group 6.\\
+        SW and LFS will write up.
+    \subsection{Hardware}
+        \item AR has fixed some problems with the robot.
+        \item AR, CL, RK have attached the motors and wheels to the chassis. We will need new wheels eventually (AR has asked for spare wheels).
+        \item The wheels can be cut down to make the robot more compact.
+    \subsection{Electronics}
+        \item SSB has cut holes in the housing and installed the components.\\
+        One cable still has not been delivered so we were waiting on that. If it hasn't arrived yet then SSB will replace the connectors with spade terminals.
+    \subsection{Software}
+        \item LFS: An algorithm is needed to determine the wheel turning
+        \item Discussion of turning on the spot v.~ turning whilst driving
+        \item The GPS shield does not appear to be working at all: it is not receiving any signal. AG will try to get it replaced to confirm a problem with the hardware.
+        \item LY has written code for turning but makes assumptions (\eg flat ground).\\
+        AG points out slow motor speeds, while initially concerning, will help to avoid slipping.
+        \item AG: The time constraint on the project means we do not expect to create a UI for children, but can design the software as if it will. MFS and SW point out that the UI can be part of a future project.
 \end{items}
 
 \section{New Business}
 \begin{items}
-    \item
+    \section{Report}
+        \item Everything sent to SSB will be put into the report.
+        \item We will aim to have the report finished the weekend before the deadline. We will assign a group to edit the report nearer the deadline.
 \end{items}
 
 \vspace{1em}
-\nextmeeting{Tuesday, February 30, at 11:15 in MPEB 3.14a}
+\nextmeeting{Tuesday, March 8, at 11:15 in MPEB 3.14a}
 \vspace{1em}
 
 \section{Actions}
 \begin{items}
-    \action{}{}
+    \action{Write up mid-term assessment of Group 6}{SW, LFS}
+    \action{Replace GPS module}{AG}
 \end{items}
 
 \end{document}

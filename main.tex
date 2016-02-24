@@ -15,21 +15,21 @@
 \usepackage{groupreport}
 
 \begin{document}
-%Title page and table of contents
+% Title page and table of contents
     \input{Sections/frontmatter}
-    \todo[inline]{Ask MF: would we usually put data sheets for components (motors \emph{etc.}) in the appendix?}
+    \todo[inline]{Ask MF: would we usually put data sheets for components (motors \etc) in the appendix?}
 \cleardoublepage
 \todototoc
 \listoftodos
 \cleardoublepage
 
-%Executive summary
+% Executive summary
     \input{Sections/acknowledgements}
 \cleardoublepage
 \pagestyle{fancy}
     \input{Sections/executive_summary}
 
-%Sections of report
+% Sections of report
 \cleardoublepage
 \fancyhead[RO]{\chaptertype~\thechapter: \small\nameref{section \thechapter}}
 \glsresetall
@@ -38,14 +38,15 @@
     \input{Sections/research}
     \input{Sections/design_outline}
     \input{Sections/design_specification}
-    \input{Sections/plan_manufacture}
+    % \input{Sections/plan_manufacture}
+    \input{Sections/prototypes}
     \input{Sections/software}
 
 
     \input{Sections/summary}
 
 
-%Include the references
+% Include the references
 \cleardoublepage
 \fancyhead[RO]{References}
 \bibliographystyle{unsrtnat}
@@ -54,7 +55,7 @@
 \fancyhead[RO]{Glossary}
 \printnoidxglossaries
 
-%Begin annexes
+% Begin annexes
 \cleardoublepage
 \fancyhead[RO]{\chaptertype~\thechapter: \small\nameref{section \thechapter}}
 \appendix
@@ -62,7 +63,7 @@
 \renewcommand{\@chapapp}{Annex}
 \makeatother
 \renewcommand{\chaptertype}{Annex}
-%Annexes of report
+% Annexes of report
     \input{Sections/list_of_components}
     \input{Sections/code}
     \input{Sections/board_meeting_minutes}
