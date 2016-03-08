@@ -1,0 +1,76 @@
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,agenda]{standalone}
+% \documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false,chair]{standalone}
+\documentclass[a4paper,11pt,twoside,class=meetingmins,crop=false]{standalone}
+\newcommand{\meetingType}{board}
+\usepackage{groupmeetings}
+
+\begin{document}
+
+\setdate{2016--03--08}
+\setpresent{
+    \chair{A.~Goodsell},
+    \boardmember{M.~Fry},
+    A.~Hyslop,
+    A.~Kallaivannan,
+    C.~Lau,
+    A.~Rutley,
+    S.~Searles-Bryant,
+    S.~Wright,
+    L.~Yeo
+}
+\absent{L.~Foglianti Spadini \textit{(apologies)},
+R.~Kent \textit{(apologies)}
+}
+% \alsopresent{\boardmember{P.~Bartlett}}
+
+\maketitle
+% \centering {Malet Place Engineering Building, room 3.14a}
+\section{Old business \& announcements}
+\begin{items}
+    % \item Ratification of minutes from 2016--02--23.
+    \item \priormins
+    \item The website has been updated.
+\end{items}
+
+\section{Progress \& discussion}
+\begin{items}
+    \subsection{\SandE moves!}
+        \item We have made \SandE drive! (We have videos.)
+        \item The robot is currently not stable: it doesn't turn on a curve properly and cannot drive in a straight line. The axles aren't parallel and the wheels are slipping on the axles (they are not fixed together by anything but friction). We need to replace the axles; new wheels are begin delivered today.\\
+        MF suggests a grub screw on the wheel and a flattened section (filed) on the axle to fix the wheel in place.
+        \item We had sketches to draw a square using GPS coordinates. The sketch did not run as expected; we believe that we need the compass to determine the robot's bearing whilst stationary.\\
+        SW: we should test individual subsystems before trying to combine them.
+        \item MF suggests attaching chalk to the drawing mechanism to test the robot on land (in the Quad).
+    \subsection{Drawing mechanism}
+        \item AR has found some servo mounts on eBay which we can have before the end of the week.
+        \item The rakes can be 3d printed; AR will design these so SSB can get them printed in the Institute of Making (in the UV resin printers).
+    \subsection{Money}
+        \item AG has asked for more money. We have not yet had a response.
+\end{items}
+
+\section{New Business}
+\begin{items}
+    \subsection{Final report}
+        \item For the next few days, our priority should be writing the report.
+        \item We should begin editing the report this week. SSB, SW, and AH will start editing the report at the end of the week.
+        \item It will cost c. \pounds{12.50} to be printed (in greyscale) and bound (150 pages, 7p per page + approx. \pounds{2} for binding). We can split this cost between us.
+        \item MF asks that the report contains a matrix of what
+    \subsection{Poster presentation}
+        \item Will need to be ``A0 and of a form that would be accepted for a scientific conference.''
+        \item We need to determine how it will be printed and who will pay.
+        \item AR, AH, and AK will start to design the poster.
+        \item Datasheets can be included in an annex if they are short.
+\end{items}
+
+\vspace{1em}
+\nextmeeting{Tuesday, March 15, at 11:15 in MPEB 3.14a}
+\vspace{1em}
+
+\section{Actions}
+\begin{items}
+    \action{Write the report}{all}
+    \action{Begin editing the report}{SSB, SW, AH}
+    \action{Begin designing the poster}{AR, AH, AK}
+\end{items}
+
+\end{document}
