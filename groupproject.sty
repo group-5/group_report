@@ -2,10 +2,11 @@
 
 \newcommand{\teamname}{The \SandE Group} %Team name
 \newcommand{\projectTitle}{The Development of a Sand Art--Drawing Robot: \SandE} %Project title
-\newcommand{\thedate}{Draft: \today}
+\newcommand{\thedate}{\ifoptionfinal{}{Draft: }\today}
 
 % Packages used in all documents
 % \usepackage{cm-super}
+\usepackage{ifdraft}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
 \usepackage{siunitx}
@@ -45,7 +46,9 @@
 %%%%                 MINTED PACKAGE IS HERE                 %%%%
 %%%%														%%%%
 %%%%                    change this option:   v             %%%%
-\usepackage[cachedir={Resources/minted},draft=true]{minted}
+\ifoptionfinal%
+{\usepackage[cachedir={Resources/minted},draft=false]{minted}}%
+{\usepackage[cachedir={Resources/minted},draft=true]{minted}}
 	% \usemintedstyle{trac}
 	\setminted{linenos=true,breaklines=true,breakautoindent=true,%fontfamily=courier,
 	xleftmargin={1cm},stripall=true,stripnl=true}

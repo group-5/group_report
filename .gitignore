@@ -10,5 +10,6 @@ main.pdf
 *.synctex.gz
 *.toc
 *.lol
+*.pyg
 Resources/*
 Midterm review/*
