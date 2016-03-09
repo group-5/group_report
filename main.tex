@@ -13,18 +13,18 @@
 \usepackage{groupreport}
 
 \begin{document}
-% Title page and table of contents
-    \input{Sections/frontmatter}
+% Front matter
+    \input{Sections/frontmatter} % title page and insert
+\cleardoublepage
+    \input{Sections/acknowledgements} % acknowledgements
+\cleardoublepage
+    \tableofcontents % table of contents
 \cleardoublepage
 \todototoc
-\listoftodos
-\cleardoublepage
-
-% Executive summary
-    \input{Sections/acknowledgements}
+    \listoftodos  % list of todos
 \cleardoublepage
 \pagestyle{fancy}
-    \input{Sections/executive_summary}
+    \input{Sections/executive_summary} % executive summary
 
 % Sections of report
 \cleardoublepage
@@ -38,6 +38,7 @@
     % \input{Sections/plan_manufacture}
     \input{Sections/prototypes}
     \input{Sections/software}
+    \input{Sections/futures}
 
 
     \input{Sections/summary}
