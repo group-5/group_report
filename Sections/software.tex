@@ -6,7 +6,24 @@
         \inputcode{82}{106}{test_routine.ino}
         \caption{Code used to test the moving components of the robot. This sketch was written by \AG. (Lines 82--106 from \hyperref[ino:test_routine]{test\_routine.ino})%
         }%
-        \label{lst: test sketch}
+        \label{lst:test sketch}
     \end{listing}
     The robot is powered by two DC motors (Section~\ref{}). Control of these was achieved through the use of a \gls{Genuino} Motor \Gls{shield} (Section~\ref{}). This shield uses pins \numlist{3;8;9;11;12}. The motor id activated and controlled using Arduino functions \cppinline{pinMode}, \cppinline{digitalWrite}, and \cppinline{analogWrite}.\\
-    A \gls{sketch} was created which would allow testing of all of the moving components on the robot. This allowed the robot to be tested before the software was complete (Listing~\ref{lst: test sketch}).
+    A \gls{sketch} was created which would allow testing of all of the moving components on the robot. This allowed the robot to be tested before the software was complete (Listing~\ref{lst:test sketch}).
+
+\mySection{Navigation}{\AG}
+    \begin{listing}[bth]
+        \inputcode{81}{109}{gps_navigation.ino}
+        \caption{Code used to convert \gls{NMEA} data to decimal form. This sketch was written by \AG. (Lines 81--109 from \hyperref[ino:gps_navigation]{gps\_navigation.ino})%
+        }%
+        \label{lst:gps navigation}
+    \end{listing}
+    \SandE uses absolute positioning to achieve the creation of sand art. This was done through the use of a \gls{GPS} \gls{shield} and \gls{magnetometer}.\\
+    The \gls{GPS} \gls{shield} allowed the extraction of position and course data through the use of the TinyGps \gls{Arduino library}\todo{where did this come from?}. This library very efficiently allows the break down of \gls{NMEA} GPS data. A key note when using such data was the strange format of latitude and longitude. A given latitude may have been: $$5138.44322$$ This has the format `51 Degrees 38.44322 minutes'.
+    This is known as decimal-decimal form. Before this could be easily used, it required converting to decimal form (Listing~\ref{lst:gps navigation}).\\
+    The premise of \SandE's navigation was to use the \gls{GPS} positioning coupled with a bearing to determine the next location that \SandE should move to, based on an absolute distance and bearing change. From the current position, bearing, distance moved, and bearing change a new theoretical set of position data could be calculated (\hyperref[ino:getWaypoint]{\texttt{getWaypoint.ino}}). \SandE would then turn and move in the direction of that waypoint. The constantly updating position was then tested against the desired final position to ascertain when \SandE had reached her destination (\hyperref[ino:]{\texttt{\?.ino}}).
+
+    The use of this particular \gls{GPS} shield provided a variety of problems. Some were due to the build quality of the shield and replacements had to be acquired\todo{is this sentence needed?}. However, some were not circumnavigable. The boot up time\todo{define boot up time} of the gls{shield} was much longer than stated and required extremely good environmental conditions for valid \gls{GPS} data to be received. This was coupled with a very slow update time of data. Combined, this called into doubt the validity of using this or any \gls{GPS} \gls{shield} for the scope of this project. It was also found that the use of this \gls{shield} could interfere with other \glspl{shield} (Section \ref{shield compatibility}).\\
+    On initial testing of this \gls{shield}, it was discovered that the bearing data could not be updated adequately to allow for the turning of \SandE while stationary, hence the need for a compass. This did however result in the delay of testing of the longitudinal and latitudinal aspects of the software.
+
+    If more funding had been available, the acquisition of a more sophisticated \gls{GPS} device, or the implementation of an entirely different navigational system, e.g. LASER reference grid, would have been preferable.\todo{rephrase to sound less like a complaint}
