@@ -11,5 +11,5 @@ main.pdf
 *.toc
 *.lol
 *.pyg
-Resources/*
-Midterm review/*
+Resources/
+Midterm review/
