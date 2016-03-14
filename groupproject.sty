@@ -43,9 +43,10 @@
 \usepackage{xcolor}
 \usepackage{fancyvrb}
 %%%%														%%%%
-%%%%                 MINTED PACKAGE IS HERE                 %%%%
+%%%%              v  MINTED PACKAGE IS HERE  v              %%%%
 %%%%														%%%%
-%%%%                    change this option:   v             %%%%
+%%%%       Uses draft=true. If final, uses draft=false      %%%%
+%%%%														%%%%
 \ifoptionfinal%
 {\usepackage[cachedir={Resources/minted},draft=false]{minted}}%
 {\usepackage[cachedir={Resources/minted},draft=true]{minted}}
@@ -56,6 +57,7 @@
 	\inputminted{cpp}{Code/#3}%
 	}
 	\newmintinline{cpp}{}
+\usepackage{enumitem}
 
 
 
