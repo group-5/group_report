@@ -55,6 +55,7 @@
 
         \paragraph{\gls{GPS}} receivers use a constellation of 31 satellites orbiting over 20,000 km, with a revolution period of 12 hours (as of February 1st 2016). Every satellite transmits data packs, which contains: the time, current position, other satellites positions and other information. The \gls{GPS} receiver receives the information about position from the radio transmissions of the satellites it can track. 4 satellites are normally used to compute the position. Although it is possible to measure the position with fewer satellites, the margin of error is large.\\
         \gls{GPS} \glspl{shield} are inexpensive and as a guidance system, obviously have a very large range.  However, the accuracy of \gls{GPS}, which may be within few metres, may depend a number of things such as signal noise, satellite position, and obstruction from tall buildings. Therefore, if GPS is to be used as the guidance system for the robot, then its worth considering a location that is isolated from tall building when it comes to the testing of the robot because signal noise can cause errors up to \SI{10}{\meter} and obstruction from tall buildings can cause errors three times more than the error from signal noise.\cite{gpsbasics} There are ways of getting the accuracy of the \gls{GPS} down to a few centimetres by using correction methods such as a differential \gls{GPS}, using a combination of \gls{GPS} and some other local positioning systems such as electronic compasses or \gls{INS}. However, these correction methods are complex and expensive and therefore they are not feasible solutions to increasing the accuracy of \gls{GPS}.
+        % Luke, 07/03: INS-corrected GPS is not complex or expensive, and is entirely feasible.
 
         \towrite{electronics: kill switch}
 
@@ -90,6 +91,139 @@
 
         \paragraph{A micro-controller} integrated circuit could be used in a purpose-built system to control the robot. This would require the design of all the supporting electronics. The microprocessor would need to be programmed in a low-level assembly language or a language designed specifically for the micro-controller product we use.\\
         These components would be cheaper than commercially available systems, but would require much more electronics design work and fabrication.
+
+
+    \mySubsection{Control theory}{\LY}\label{outline: control theory}
+        Control theory lies at the interface between positioning systems and control platforms.
+        Given some target movement pattern, control theory concerns the way we (1) interpret positioning data and (2) use this information to generate explicit commands for the robot.
+
+        Our primary concern on this front is noise.
+        Each positioning system carries a distinct class of noise---for instance,
+        \begin{itemize}
+            \item GPS carries noise in absolute position,
+            \item a compass carries noise in absolute angular position,
+            \item an accelerometer carries noise in relative position, and
+            \item a gyroscope carries noise in relative angular position.
+        \end{itemize}
+        Each positioning system may also have other deficiencies, including a low rate of update, as we find with GPS and electronic compasses.
+        Fortunately, the Kalman filter provides a well-understood method for utilizing multiple sources of positioning data, in order to collectively overcome each of their individual deficiencies.
+
+        Since implementing the Kalman filter would place substantial strain on our financial and technical capabilities, we explored an alternative method for coping with noise.
+        Instead of dealing with noise at the control level, we sought to deal with it at the specification level---that is, by restricting our target movement patterns to those that are robust to noise.
+
+        In the following, we describe our findings with regard to this alternative method and explain how the Kalman filter can be applied to this project.
+
+        \subsubsection{Noise-robust paths}
+        Inspired by emergent phenomena in many-body systems, we consider the existence of movement patterns whose emergent art is robust to noise.
+        Just as thermal agitation does not preclude mechanical transport, it may be that noisy positioning data does not preclude large-scale order in the form of art.
+
+        For simplicity, we consider movement patterns characterised by continuous paths in the plane.
+        In this context, we seek a class of paths for which noise is washed away at sufficiently coarse-grained representations.
+        We work in the absence of explicit error-correction to ease our technical burden, and in the absence of GPS to minimise our reliance on external conditions.
+
+        By analogy with many-body systems, we expect that the emergent large-scale order of noise-robust paths should be scale-invariant.
+        One such class of paths is the fractal path\footnote{Commonly referred to as fractal \emph{curves} in the mathematical literature.}.
+        They exhibit scale-invariance by way of self-similarity, in addition to being straightforward to generate at scale.
+        Indeed, our simulations suggest that some families of fractal paths can generate large-scale order despite facing small-scale noise.
+
+        Given any target path, our computer simulation mimics the robot's movement as follows.
+        It discretises the path into a sequence of straight line segments, each of which is stored as a 2-dimensional vector and extends no more than some fixed length.
+        Each vector in the sequence is then transformed to its noisy counterpart by replacing its radial and angular components with normally distributed random variables with mean equal to the original value and standard deviation given by the standard error that we expect.
+        The resulting path, generated by traversing each noisy vector in sequence, is one sample of the random process.
+        Since our goal is to generate visual art for the eye, the resulting paths are evaluated by comparing them to their target paths by eye.
+
+        With positioning data from an electronic compass and a linear accelerometer, we estimate that noise in the robot's movement introduces an angular standard error of 1 degree~\cite{??} and %, to be safe,
+        a radial standard error of at least a tenth of each discrete segment.
+
+        \begin{itemize}
+            \item examples of simulations with fractals, non-fractals
+            \item gestalt requires small-scale order
+            \item established tradition of fractals as art
+        \end{itemize}
+
+
+        \subsubsection{Noise-robust control}
+        If instead we want the robot to traverse more general paths, we need to employ a control procedure that is robust to noise.
+
+        Naively, we can take absolute positioning data (GPS, direction from compass) at face value, and we can use\footnote{Given initial position and velocity, we can integrate over acceleration to obtain displacement. This is known as dead reckoning.} relative positioning data (linear and angular acceleration) to compute the robot's motion in between these updates.
+        In the absence of noise, this procedure exact.
+        But in the presence of noise, it steadily diverges from accuracy with the scale of noise.
+        Now intuitively, we would like to give to weight to the forms of positioning data that are less noisy since they introduce less error into our procedure.
+        If we carefully model the situation as a stochastic dynamical system, we can obtain rigorous estimates for the robot's position.
+
+        \newcommand\ndistr[2]{\mathcal{N}(#1, #2)}
+        \newcommand\noise[1]{\epsilon^{(#1)}}
+        \newcommand\Real[1]{\mathbb{R}^{#1}}
+
+        \begin{figure}[h]
+            \missingfigure{Graphical model for SSM}
+            \caption{neglect noise}
+            \label{fig:SSM}
+        \end{figure}
+
+        Following Murphy~\cite{murphy}, consider the state space model whose causal dependence is depicted in Figure~\ref{fig:SSM}.
+        At each time step $t = 1, 2, \ldots$, the system is specified by a hidden state $h_t \in \Real{m}$ and an observed state $o_t \in \Real{n}$.
+        The hidden states correspond to the underlying state of the robot on the surface of the beach, and the observed states correspond to positioning data that we retrieve from GPS, a compass, and accelerometers.
+        If at each time $t$, we send a control signal $c_t$ to the robot, we can write
+        \begin{align}
+            h_t &= f(h_{t-1}, c_t, \noise{h}_t), \\
+            o_t &= g(h_{t}, c_t, \noise{o}_t),
+        \end{align}
+        where $f$ is a function that models transitions between hidden states, depending on the noise $\noise{h}_t$ associated with the system's evolution; and $g$ is a function that models emissions of observations from hidden states, depending on the noise $\noise{o}_t$ associated with observation.
+        For simplicity, we suppose that $f,g$ are both linear in each of their arguments, and each random variable $h_t, o_t, c_t, \noise{h}_t, \noise{o}_t$ follows a multivariate Gaussian distribution.
+        Then we have
+        \begin{align}
+            h_t &= A_t h_{t-1} + B_t c_t + \noise{h}_t, \\
+            o_t &= C_t h_{t} + D_t c_t + \noise{o}_t,
+        \end{align}
+        where the noise terms\footnote{$\ndistr{\mu}{\Sigma}$ denotes the Gaussian distribution with mean $\mu$ and covariance matrix $\Sigma$.} $\noise{h}_t \sim \ndistr{0}{Q_t}$ and $\noise{o}_t \sim \ndistr{0}{R_t}$ are each centred on zero, and $A_t, B_t, C_t, D_t, Q_t, R_t$ are real matrices of appropriate dimension ($m$ or $n$).
+        Formally, this restricts all conditional probability distributions to the class of linear-Gaussians.
+        Although we need only that they fall in the exponential family of distributions, the linear-Gaussian case, known as a linear dynamical system, is straightforward to handle analytically.
+
+        If the probability distribution\footnote{The notation $1:t$ denotes, for instance in $o_{1:t}$, the sequence of observations $o_1, o_2, \ldots, o_t$.} $P(h_t \mid o_{1:t}, c_{1:t}) = \ndistr{\mu_t}{\Sigma_t}$ is Gaussian with mean $\mu_t$ and covariance $\Sigma_t$, it can be shown that the a priori \textbf{prediction} for the hidden state $h_t$, given the observations $o_{1:t-1}$ and control signals $c_{1:t}$, is
+        \begin{align}
+            &P(h_t | o_{1:t-1}, c_{1:t}) = \ndistr{\mu_{t|t-1}}{\Sigma_{t|t-1}} \\
+            \text{where }
+            &\begin{cases}
+                \mu_{t|t-1} &= A_t \mu_{t-1} + B_t u_t, \\
+                \Sigma_{t|t-1} &= A_t \Sigma_{t-1} A_t^\intercal + Q_t.
+            \end{cases}
+        \end{align}
+        Upon observation of $o_t$, we find the optimal \textbf{update} rules
+        \begin{align}
+            \mu_t &\mapsto \mu_{t|t-1} + K_t r_t, \\
+            \Sigma_t &\mapsto (I - K_t C_t) \Sigma_{t|t-1},
+        \end{align}
+        where the \emph{innovation}
+        \begin{align}
+            r_t &= o_t - \hat{o}_t \\
+            \text{where }\hat{o}_t &= (C_t \mu_{t|t-1} + D_t c_t)
+        \end{align}
+        is associated with the covariance
+        \begin{equation}
+            S_t = C_t \Sigma_{t|t-1} C_t^\intercal + R_t
+        \end{equation}
+        which features in the \emph{Kalman gain}
+        \begin{equation}
+            K_t = \Sigma_{t|t-1} C_t^\intercal S_t^{-1}.
+        \end{equation}
+        These rules are optimal in that they minimise the mean-squared error $\langle \lvert o_t - \hat{o}_t \rvert^2 \rangle$.
+
+% Luke, 14/03: add this bib somewhere, SSB?
+% @book{murphy,
+%   title={Machine learning: a probabilistic perspective},
+%   author={Murphy, Kevin P},
+%   year={2012},
+%   publisher={MIT press}
+% }
+
+        TBD:
+        \begin{itemize}
+            \item describe KF: inputs, outputs, usage, linearisation, time and space complexity
+            \item inadequacies
+            \item describe extended KF (linearisation relaxed)
+        \end{itemize}
+
 
         \mySubsection{Power}{\SSB}\label{outline: power}
             The \gls{Arduino} requires a supply voltage of \SIrange{7}{12}{\volt}. The motors will also require a power supply of \SIrange{5}{12}{\volt}. There are many different types of battery, several of which are appropriate for the robot:
