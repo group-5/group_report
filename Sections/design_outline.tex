@@ -153,17 +153,17 @@
 
         \newcommand\ndistr[2]{\mathcal{N}(#1, #2)}
         \newcommand\noise[1]{\epsilon^{(#1)}}
-        \newcommand\Real[1]{\mathbb{R}^{#1}}
 
         \begin{figure}[h]
-            \missingfigure{Graphical model for SSM}
-            \caption{neglect noise}
+            \includegraphics{Files/graphical_model/graphical_model}
+            \caption{Causal network of our model, neglecting the noise terms $\noise{h}_t$ (resp. $\noise{o}_t$) that feature independently in each node $h_t$ (resp. $o_t$).
+            The graph describes conditional independence between the random variables, such that given $h_t$ and $c_t$ we have that $o_t$ is independent of all $h_\tau, c_\tau, o_\tau$ for all $\tau < t$.}
             \label{fig:SSM}
         \end{figure}
 
         Following Murphy~\cite{murphy}, consider the state space model whose causal dependence is depicted in Figure~\ref{fig:SSM}.
-        At each time step $t = 1, 2, \ldots$, the system is specified by a hidden state $h_t \in \Real{m}$ and an observed state $o_t \in \Real{n}$.
-        The hidden states correspond to the underlying state of the robot on the surface of the beach, and the observed states correspond to positioning data that we retrieve from GPS, a compass, and accelerometers.
+        At each time step $t = 1, 2, \ldots$, the system is specified by a hidden state $h_t \in \mathbb{R}^{m}$ and an observation $o_t \in \mathbb{R}^{n}$.
+        The hidden state corresponds to the underlying state of the robot on the surface of the beach, and the observation corresponds to positioning data retrieved from GPS, compass, and accelerometers.
         If at each time $t$, we send a control signal $c_t$ to the robot, we can write
         \begin{align}
             h_t &= f(h_{t-1}, c_t, \noise{h}_t), \\
@@ -176,11 +176,11 @@
             h_t &= A_t h_{t-1} + B_t c_t + \noise{h}_t, \\
             o_t &= C_t h_{t} + D_t c_t + \noise{o}_t,
         \end{align}
-        where the noise terms\footnote{$\ndistr{\mu}{\Sigma}$ denotes the Gaussian distribution with mean $\mu$ and covariance matrix $\Sigma$.} $\noise{h}_t \sim \ndistr{0}{Q_t}$ and $\noise{o}_t \sim \ndistr{0}{R_t}$ are each centred on zero, and $A_t, B_t, C_t, D_t, Q_t, R_t$ are real matrices of appropriate dimension ($m$ or $n$).
+        where the noise terms\footnote{$\ndistr{\mu}{\Sigma}$ denotes the multivariate Gaussian distribution with vector mean $\mu$ and covariance matrix $\Sigma$.} $\noise{h}_t \sim \ndistr{0}{Q_t}$ and $\noise{o}_t \sim \ndistr{0}{R_t}$ are each centred on zero, and $A_t, B_t, C_t, D_t, Q_t, R_t$ are real matrices of appropriate dimension ($m$ or $n$).
         Formally, this restricts all conditional probability distributions to the class of linear-Gaussians.
-        Although we need only that they fall in the exponential family of distributions, the linear-Gaussian case, known as a linear dynamical system, is straightforward to handle analytically.
+        Although we need only that they fall in the exponential family of distributions, the linear-Gaussian case is straightforward to handle analytically.
 
-        If the probability distribution\footnote{The notation $1:t$ denotes, for instance in $o_{1:t}$, the sequence of observations $o_1, o_2, \ldots, o_t$.} $P(h_t \mid o_{1:t}, c_{1:t}) = \ndistr{\mu_t}{\Sigma_t}$ is Gaussian with mean $\mu_t$ and covariance $\Sigma_t$, it can be shown that the a priori \textbf{prediction} for the hidden state $h_t$, given the observations $o_{1:t-1}$ and control signals $c_{1:t}$, is
+        If the probability distribution\footnote{The notation $1:t$ denotes, for instance in $o_{1:t}$, the set of observations $o_{1:t} = \{o_1, o_2, \ldots, o_t\}$.} $P(h_t \mid o_{1:t}, c_{1:t}) = \ndistr{\mu_t}{\Sigma_t}$ is Gaussian with mean $\mu_t$ and covariance $\Sigma_t$, it can be shown that the a priori \textbf{prediction} for the state $h_t$, given the observations $o_{1:t-1}$ and control signals $c_{1:t}$, is
         \begin{align}
             &P(h_t | o_{1:t-1}, c_{1:t}) = \ndistr{\mu_{t|t-1}}{\Sigma_{t|t-1}} \\
             \text{where }
@@ -203,26 +203,41 @@
         \begin{equation}
             S_t = C_t \Sigma_{t|t-1} C_t^\intercal + R_t
         \end{equation}
-        which features in the \emph{Kalman gain}
+        which features in the \emph{Kalman gain matrix}
         \begin{equation}
             K_t = \Sigma_{t|t-1} C_t^\intercal S_t^{-1}.
         \end{equation}
         These rules are optimal in that they minimise the mean-squared error $\langle \lvert o_t - \hat{o}_t \rvert^2 \rangle$.
 
-% Luke, 14/03: add this bib somewhere, SSB?
-% @book{murphy,
-%   title={Machine learning: a probabilistic perspective},
-%   author={Murphy, Kevin P},
-%   year={2012},
-%   publisher={MIT press}
-% }
+        By alternating between the \emph{predict} and \emph{update} steps, we recover the Kalman filter algorithm for state estimation.
+        Explicitly, these results allow us to compute the exactly optimal prediction for the distribution $P(h_t | o_{1:t}, c_{1:t})$ of the system's state at each point in time, as long as we have access to the
+        \begin{enumerate}
+            \item dynamical relations $A_t, B_t, C_t, D_t$ of the system,
+            \item covariances $Q_t, R_t$ of noise associated with evolution and observation, and
+            \item distribution $\ndistr{\mu_0}{\Sigma_0}$ of the initial state $h_0$.
+        \end{enumerate}
 
-        TBD:
+        If we parametrise the variables in our model such that
         \begin{itemize}
-            \item describe KF: inputs, outputs, usage, linearisation, time and space complexity
-            \item inadequacies
-            \item describe extended KF (linearisation relaxed)
+            \item the robot's state $h_t$ is specified by its position, velocity, and orientation;
+            \item its observation $o_t$ is specified by its position, velocity, acceleration, and orientation; and
+            \item our control signal $c_t$ is specified by predetermined electrical pulses that modulate the speed of the robot's wheels;
         \end{itemize}
+        then each of these features in our application of the Kalman filter as follows.
+        \begin{enumerate}
+            \item The relationship between the robot's position, velocity, acceleration, and motion of its wheels is determined by Newton's laws.
+            \item The covariances in noise can be estimated by fitting repeated measurements to a multivariate Gaussian distribution.
+            \item It is common to use a large covariance $\Sigma_0$ for the initial state since it quickly converges to an appropriate value after a few time steps.
+                Then the choice of the initial state's mean $\mu_0$ is not significant.\cite{murphy}
+        \end{enumerate}
+
+        Some issues that may arise from this approach include its computational cost and the linear-Gaussian model's poor representation of our problem.
+        At each time step, the dominant computational costs lie in computing matrix inversion in the Kalman gain matrix $K_t$ and matrix multiplication in the updated covariance matrix $\Sigma_t$, with time complexity $O(n^3)$ and $O(m^2)$ respectively.\footnote{Recall that $m$ is the dimension of the hidden state space and $n$ is the dimension of the observation space.}
+        In terms of real time, these scale inversely with the interval $\delta t$ between successive time steps, so that they can easily outpace an embedded system's processor.
+        The state space model used above may fail on either of two fronts: linearity and complexity of distribution.
+        Since the Gaussian distribution is the maximally entropic probability distribution given the first two moments (mean and variance), divergence from the Gaussian distribution must lie at higher moments.
+        Likewise, divergence from linearity must lie at higher orders of the Taylor expansion of $h_t = f(h_{t-1}, c_t, \noise{h}_t)$ and $o_t = g(h_{t}, c_t, \noise{o}_t)$.\footnote{Since these equations describe classical dynamics, we can assume that their Taylor expansions exist.}
+        Both of these problems can be addressed by modifying the abstract treatment above---obtaining for instance the extended or unscented variants of the Kalman Filter.
 
 
         \mySubsection{Power}{\SSB}\label{outline: power}
