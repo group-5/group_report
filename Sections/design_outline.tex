@@ -95,18 +95,18 @@
 
     \mySubsection{Control theory}{\LY}\label{outline: control theory}
         Control theory lies at the interface between positioning systems and control platforms.
-        Given some target movement pattern, control theory concerns the way we (1) interpret positioning data and (2) use this information to generate explicit commands for the robot.
+        Given some target movement pattern, control theory concerns the way we interpret positioning data and use this information to generate commands for the robot.
 
         Our primary concern on this front is noise.
-        Each positioning system carries a distinct class of noise---for instance,
+        Each positioning system carries a distinct class of noise associated with the positioning information it provides---for instance,
         \begin{itemize}
             \item GPS carries noise in absolute position,
             \item a compass carries noise in absolute angular position,
             \item an accelerometer carries noise in relative position, and
             \item a gyroscope carries noise in relative angular position.
         \end{itemize}
-        Each positioning system may also have other deficiencies, including a low rate of update, as we find with GPS and electronic compasses.
-        Fortunately, the Kalman filter provides a well-understood method for utilizing multiple sources of positioning data, in order to collectively overcome each of their individual deficiencies.
+        Each positioning system may also have other deficiencies, including a low rate of update, as is found in GPS and electronic compasses.
+        Fortunately, the Kalman filter provides a powerful and well-understood method for utilizing multiple sources of positioning data, in order to collectively overcome each of their individual deficiencies.
 
         Since implementing the Kalman filter would place substantial strain on our financial and technical capabilities, we explored an alternative method for coping with noise.
         Instead of dealing with noise at the control level, we sought to deal with it at the specification level---that is, by restricting our target movement patterns to those that are robust to noise.
@@ -115,31 +115,71 @@
 
         \subsubsection{Noise-robust paths}
         Inspired by emergent phenomena in many-body systems, we consider the existence of movement patterns whose emergent art is robust to noise.
-        Just as thermal agitation does not preclude mechanical transport, it may be that noisy positioning data does not preclude large-scale order in the form of art.
+        Just as thermal agitation does not preclude mechanical transport, it may be that noisy positioning data does not preclude large scale order in the form of art.
 
         For simplicity, we consider movement patterns characterised by continuous paths in the plane.
         In this context, we seek a class of paths for which noise is washed away at sufficiently coarse-grained representations.
-        We work in the absence of explicit error-correction to ease our technical burden, and in the absence of GPS to minimise our reliance on external conditions.
+        This coarse-graining is naturally provided by viewing the paths at further distances with fixed resolution.
+        We work in the absence of explicit error correction to ease our technical burden, and in the absence of GPS to minimise our reliance on external conditions.
+        Explicit error correction will be taken up in the next section on noise-robust control.
 
-        By analogy with many-body systems, we expect that the emergent large-scale order of noise-robust paths should be scale-invariant.
+        By analogy with many-body systems, we expect that the emergent large scale order of noise-robust paths should be scale-invariant.
         One such class of paths is the fractal path\footnote{Commonly referred to as fractal \emph{curves} in the mathematical literature.}.
         They exhibit scale-invariance by way of self-similarity, in addition to being straightforward to generate at scale.
-        Indeed, our simulations suggest that some families of fractal paths can generate large-scale order despite facing small-scale noise.
+        Indeed, our simulations suggest that some families of fractal paths can generate large scale order despite accumulating small scale noise.
 
         Given any target path, our computer simulation mimics the robot's movement as follows.
-        It discretises the path into a sequence of straight line segments, each of which is stored as a 2-dimensional vector and extends no more than some fixed length.
-        Each vector in the sequence is then transformed to its noisy counterpart by replacing its radial and angular components with normally distributed random variables with mean equal to the original value and standard deviation given by the standard error that we expect.
+        It discretises the path into a sequence of straight line segments, each of which is stored as a 2-dimensional vector and extends no more than some fixed length $r_0$.
+        Since $r_0$ acts as the maximal length of an elementary line segment, it must be chosen to be small compared to all other length scales of the system---namely, the size of the intended drawing.
+        Each vector in the sequence is then transformed to its noisy counterpart by replacing its radial and angular components with normally distributed random variables with mean equal to the original value and standard deviation given by the standard error inherent to our system.
         The resulting path, generated by traversing each noisy vector in sequence, is one sample of the random process.
         Since our goal is to generate visual art for the eye, the resulting paths are evaluated by comparing them to their target paths by eye.
 
-        With positioning data from an electronic compass and a linear accelerometer, we estimate that noise in the robot's movement introduces an angular standard error of 1 degree~\cite{??} and %, to be safe,
-        a radial standard error of at least a tenth of each discrete segment.
+        \begin{listing}[pbt]
+            \inputminted{mathematica}{Code/gestalt.m}
+            \caption{Mathematica code used to sample noisy paths through four test images. A target path is generated for each high-resolution colour image by converting it to a 100-by-100 pixel black-and-white image, and applying Mathematica's optimisation algorithm for finding the shortest tour along the black pixels. Three noisy paths are sampled for each target path.}
+            \label{lst:gestalt}
+        \end{listing}
 
-        \begin{itemize}
-            \item examples of simulations with fractals, non-fractals
-            \item gestalt requires small-scale order
-            \item established tradition of fractals as art
-        \end{itemize}
+        \begin{listing}[pbt]
+            \inputminted{mathematica}{Code/koch.m}
+            \caption{Mathematica code used to sample noisy paths through Koch curves of various length. The target path is generated by utilising the mapping from the Thue-Morse sequence to directions that converge to the Koch curve. Four noisy paths are sampled for each target path.}
+            \label{lst:koch}
+        \end{listing}
+
+        This procedure is implemented in Listings~\ref{lst:gestalt} and \ref{lst:koch}.
+        With positioning data from an electronic compass and a linear accelerometer, we estimate that noise in the robot's movement introduces an angular standard error of 1 degree~\cite{honeywell} and, to be safe, a radial standard error of at most a tenth of each discrete segment.
+        These are implemented as \mintinline{mathematica}{et = 2*Pi/360} and \mintinline{mathematica}{er = 0.1} in the listings, where we have used $r_0 = 1$.
+        Note that the absolute angular positioning data from the compass is utilised in a sub-optimal manner---instead, an absolute coordinate system can be used to minimise the accumulation of error.
+        Alternatively, this implementation can be regarded as utilising only local measurements of linear and angular acceleration, where the latter is obtained by a fairly accurate gyroscope (angular accelerometer).
+
+        \begin{figure}[hbt]
+            \includegraphics[width=\columnwidth]{Files/gestalt}
+            \caption{Samples of noisy paths through some test images. Within each row, the images represent (1) the test image rendered in black and white pixels, (2) the target path corresponding to a tour through the black pixels, and (3--5) samples of noisy attempts at replicating the target path.}
+            \label{fig:gestalt}
+        \end{figure}
+
+        \begin{figure}[hbt]
+            \includegraphics[width=0.5\textheight]{Files/koch}
+            \caption{Samples of noisy paths through Koch curves of lengths 1024, 2048, 4096, 8192, and 16384. Within each row, the images represent (1) the target path corresponding to the Koch curve of some length, and (2--5) samples of noisy attempts at replicating the target path.}
+            \label{fig:koch}
+        \end{figure}
+
+        Some results of sampling target paths are shown in Figures~\ref{fig:gestalt} and \ref{fig:koch}.
+        Since the planar dimensions of the longest Koch curve in Figure~\ref{fig:koch} are of the same order of magnitude as the paths through the test images, we can compare the behaviour of their noisy samples.
+        It can be seen that the attempts at rendering the test images are fraught with errors whereas the attempts at reproducing the Koch curve appear to converge with increasing length.
+        In particular, we find that the most striking errors in Figure~\ref{fig:gestalt} are those that relate to the alignment of features such as the eyes in the second through last test images.
+        We note that importance of alignment is a generic feature of visual figures.
+        The nature of alignment as small scale order therefore renders figurative art difficult to reproduce with this procedure.
+        On the other hand, we find that the long noisy samples of the Koch curve retain, at a large length scale, the scale-invariant shape of the curve.
+        These results suggest the existence of a family of noise-robust paths in the plane, containing the Koch curve as one exemplary member.
+
+% Please add to .bib:
+% @article{honeywell,
+%   title={3-Axis Digital Compass IC HMC5883L: Advanced Information},
+%   author={Honeywell},
+%   url={http://www.adafruit.com/products/1746}
+% }
 
 
         \subsubsection{Noise-robust control}
@@ -170,14 +210,14 @@
             o_t &= g(h_{t}, c_t, \noise{o}_t),
         \end{align}
         where $f$ is a function that models transitions between hidden states, depending on the noise $\noise{h}_t$ associated with the system's evolution; and $g$ is a function that models emissions of observations from hidden states, depending on the noise $\noise{o}_t$ associated with observation.
-        For simplicity, we suppose that $f,g$ are both linear in each of their arguments, and each random variable $h_t, o_t, c_t, \noise{h}_t, \noise{o}_t$ follows a multivariate Gaussian distribution.
+        For simplicity, we suppose that $f$ and $g$ are both linear in each of their arguments, and that each random variable $h_t, o_t, c_t, \noise{h}_t$, and $\noise{o}_t$ follows a multivariate Gaussian distribution.
         Then we have
         \begin{align}
             h_t &= A_t h_{t-1} + B_t c_t + \noise{h}_t, \\
             o_t &= C_t h_{t} + D_t c_t + \noise{o}_t,
         \end{align}
         where the noise terms\footnote{$\ndistr{\mu}{\Sigma}$ denotes the multivariate Gaussian distribution with vector mean $\mu$ and covariance matrix $\Sigma$.} $\noise{h}_t \sim \ndistr{0}{Q_t}$ and $\noise{o}_t \sim \ndistr{0}{R_t}$ are each centred on zero, and $A_t, B_t, C_t, D_t, Q_t, R_t$ are real matrices of appropriate dimension ($m$ or $n$).
-        Formally, this restricts all conditional probability distributions to the class of linear-Gaussians.
+        Formally, this restricts all conditional probability distributions to the class of linear-Gaussian distributions.
         Although we need only that they fall in the exponential family of distributions, the linear-Gaussian case is straightforward to handle analytically.
 
         If the probability distribution\footnote{The notation $1:t$ denotes, for instance in $o_{1:t}$, the set of observations $o_{1:t} = \{o_1, o_2, \ldots, o_t\}$.} $P(h_t \mid o_{1:t}, c_{1:t}) = \ndistr{\mu_t}{\Sigma_t}$ is Gaussian with mean $\mu_t$ and covariance $\Sigma_t$, it can be shown that the a priori \textbf{prediction} for the state $h_t$, given the observations $o_{1:t-1}$ and control signals $c_{1:t}$, is
@@ -216,6 +256,7 @@
             \item covariances $Q_t, R_t$ of noise associated with evolution and observation, and
             \item distribution $\ndistr{\mu_0}{\Sigma_0}$ of the initial state $h_0$.
         \end{enumerate}
+        In particular, the distribution $P(h_t | o_{1:t}, c_{1:t})$ provides the expected state of the robot on the beach, in addition to the uncertainty in each of the state's parameters.
 
         If we parametrise the variables in our model such that
         \begin{itemize}
@@ -223,9 +264,9 @@
             \item its observation $o_t$ is specified by its position, velocity, acceleration, and orientation; and
             \item our control signal $c_t$ is specified by predetermined electrical pulses that modulate the speed of the robot's wheels;
         \end{itemize}
-        then each of these features in our application of the Kalman filter as follows.
+        then each of these requirements features in our application of the Kalman filter as follows.
         \begin{enumerate}
-            \item The relationship between the robot's position, velocity, acceleration, and motion of its wheels is determined by Newton's laws.
+            \item The relationship between the robot's position, velocity, acceleration, and motion of its wheels is determined in closed form by Newton's laws.
             \item The covariances in noise can be estimated by fitting repeated measurements to a multivariate Gaussian distribution.
             \item It is common to use a large covariance $\Sigma_0$ for the initial state since it quickly converges to an appropriate value after a few time steps.
                 Then the choice of the initial state's mean $\mu_0$ is not significant.\cite{murphy}
